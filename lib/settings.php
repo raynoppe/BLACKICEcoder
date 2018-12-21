@@ -120,8 +120,8 @@ $tPeriod = 1296000-1;
 include(dirname(__FILE__)."/settings-update.php");
 
 // Set loggedIn and username to false if not set as yet
-if (!isset($_SESSION['loggedIn'])) {$_SESSION['loggedIn'] = false;};
-if (!isset($_SESSION['username'])) {$_SESSION['username'] = false;};
+if (!isset($_SESSION['loggedIn'])) {$_SESSION['loggedIn'] = true;};
+if (!isset($_SESSION['username'])) {$_SESSION['username'] = true;};
 
 // Attempt a login with password
 if(isset($_POST['submit']) && $setPWorLogin=="login") {
