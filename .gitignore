@@ -7,3 +7,4 @@ plugins/*
 test/test-file1.txt
 tmp/*
 !tmp/index.php
+/lib/config-192_168_0_18.php

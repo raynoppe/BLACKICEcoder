@@ -4,11 +4,13 @@
 
 This is a port of [ICEcoder](https://icecoder.net/).  
 
-BLACKICEcoder is a web IDE / browser based code editor, which allows you to develop websites on your Andriod Device or locally on any . It uses the brilliant CodeMirror for code highlighting & editing, with a slick IDE wrapped around it to make the whole thing work. 
+BLACKICEcoder is a web IDE / browser based code editor, which allows you to develop websites on your Andriod Device or locally on any Machine running PHP. It uses CodeMirror for code highlighting & editing, with a slick IDE wrapped around it to make the whole thing work. 
 
 <img src="https://icecoder.net/images/icecoder-v6-0-browser-code-editor.png" alt="ICEcoder web IDE">
 
 ### Differences between BLACKICEcoder and ICEcoder
+
+`Please note: Even though this is modified for Termux it works perfectly fine on any server running PHP`
 
 * Adjusted the CSS to be more friendly towards small devices. 
 * Changed a few things so it just works out the box on a standard [Termux](https://termux.com/) installation
@@ -30,24 +32,49 @@ You can run ICEcoder either online or locally on any Android phone that can run 
 #### Step 1 (Termux): Get BLACKICEcoder
 
 Either download the zip or clone from Github using:
-Make sure you have php installed 
+Make sure you have php installed **(Don't type or copy the $)**
 ```
-pkg install php
+$ pkg install php
 ```
 In termux install git if you haven't done so yet
 ```
-pkg install git
+$ pkg install git
 ```
 and then run the git clone command in your home folder (~/ or /data/data/com.termux/files/home)
 ```
-git clone git@gitlab.com:raynoppe/blackicecoder.git
+$ git clone https://gitlab.com/raynoppe/blackicecoder.git
 ```
 
 #### Step 2 (Termux):
+Enter your install folder:
+```
+$ cd blackicecoder
+```
 Set write permissions on the 'backups', 'lib', 'plugins', 'test' and 'tmp' folders.
 Example: 
 ```
-chmod 775 backups/
+$ chmod 775 backups/
+```
+Double check your Termux document root
+```
+$ cd ~
+$ pwd
+```
+If it differs for some strange reason to '/data/data/com.termux/files/home' you need to update the following file 'lib/config__settings.php' using vim or your favourite editor
+```
+$ cd blackicecoder
+$ vim lib/config__settings.php
+```
+Change the docRoot value to reflect your Termux home folder 
+```
+"docRoot"		=> '/data/data/com.termux/files/home' 
+```
+Save the file
+
+#### Step 3 (Termux):
+Run php in the blackicecoder folder: 
+```
+php -S 0.0.0.0:1028 -t ~/blackicecoder/
 ```
 
 #### Step 1 (Desktops, Servers): Get BLACKICEcoder
