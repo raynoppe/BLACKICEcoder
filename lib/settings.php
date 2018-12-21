@@ -100,21 +100,21 @@ $demoMode = $ICEcoder['demoMode'];
 // Check if trial period has ended
 $tPeriod = 1296000-1;
 
-if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] && generateHash(strClean($ICEcoder['licenseEmail']),$ICEcoder['licenseCode'])!=$ICEcoder['licenseCode'] && $ICEcoder['configCreateDate'] > 0 && $ICEcoder['configCreateDate']+$tPeriod < time() && !isset($_GET['get']) && !isset($_POST['code'])) {
-	if (file_exists('lib/login.php')) {
-		// Go to get code screen in top level window
-		echo "<script>window.location='lib/login.php?get=code&csrf=".$_SESSION["csrf"]."';</script>";
-	} else {
-		// Go to get code screen in top level window
-		echo "<script>window.location='login.php?get=code&csrf=".$_SESSION["csrf"]."';</script>";
-	}
-	die('Redirecting to donate screen...');
-	exit;
-}
-$tRemaining = ($ICEcoder['configCreateDate']+$tPeriod)-time();
-if ($tRemaining > $tPeriod || $ICEcoder['configCreateDate'] == 0) {$tRemaining = $tPeriod;};
-$tRemainingPerc = number_format($tRemaining/$tPeriod,2);
-$tDaysRemaining = intval($tRemaining/(60*60*24));
+// if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] && generateHash(strClean($ICEcoder['licenseEmail']),$ICEcoder['licenseCode'])!=$ICEcoder['licenseCode'] && $ICEcoder['configCreateDate'] > 0 && $ICEcoder['configCreateDate']+$tPeriod < time() && !isset($_GET['get']) && !isset($_POST['code'])) {
+// 	if (file_exists('lib/login.php')) {
+// 		// Go to get code screen in top level window
+// 		echo "<script>window.location='lib/login.php?get=code&csrf=".$_SESSION["csrf"]."';</script>";
+// 	} else {
+// 		// Go to get code screen in top level window
+// 		echo "<script>window.location='login.php?get=code&csrf=".$_SESSION["csrf"]."';</script>";
+// 	}
+// 	die('Redirecting to donate screen...');
+// 	exit;
+// }
+// $tRemaining = ($ICEcoder['configCreateDate']+$tPeriod)-time();
+// if ($tRemaining > $tPeriod || $ICEcoder['configCreateDate'] == 0) {$tRemaining = $tPeriod;};
+// $tRemainingPerc = number_format($tRemaining/$tPeriod,2);
+// $tDaysRemaining = intval($tRemaining/(60*60*24));
 
 // Update this config file?
 include(dirname(__FILE__)."/settings-update.php");
@@ -189,105 +189,105 @@ include(dirname(__FILE__)."/settings-save-current-files.php");
 // Display the plugins
 include(dirname(__FILE__)."/plugins-display.php");
 
-// If loggedIn is false or we don't have a password set yet and we're not on login screen, boot user to that
-if ((!$_SESSION['loggedIn'] || $ICEcoder["password"] == "") && !strpos($_SERVER['SCRIPT_NAME'],"lib/login.php")) {
-	if (file_exists('lib/login.php')) {
-		header('Location: lib/login.php');
-		echo "<script>window.location='lib/login.php';</script>";
-	} else {
-		header('Location: login.php');
-		echo "<script>window.location='login.php';</script>";
-	}
-	die('Redirecting to login...');
+// // If loggedIn is false or we don't have a password set yet and we're not on login screen, boot user to that
+// if ((!$_SESSION['loggedIn'] || $ICEcoder["password"] == "") && !strpos($_SERVER['SCRIPT_NAME'],"lib/login.php")) {
+// 	if (file_exists('lib/login.php')) {
+// 		header('Location: lib/login.php');
+// 		echo "<script>window.location='lib/login.php';</script>";
+// 	} else {
+// 		header('Location: login.php');
+// 		echo "<script>window.location='login.php';</script>";
+// 	}
+// 	die('Redirecting to login...');
 
-// If we're unlocking ICEcoder after donating
-} elseif (isset($_POST['submit']) && (strpos($_POST['submit'],"Unlock ICEcoder")>-1)) {
-	if (generateHash(strClean($_POST['email']),$_POST['code'])==$_POST['code']) {
-		$settingsContents = getData($settingsFile);
-		// Replace our empty email & code with the one submitted by user
-		$settingsContents = str_replace('"licenseEmail"		=> "",','"licenseEmail"		=> "'.$_POST['email'].'",',$settingsContents);
-		$settingsContents = str_replace('"licenseCode"		=> "",','"licenseCode"		=> "'.$_POST['code'].'",',$settingsContents);
-		// Now update the config file
-		$fh = fopen($settingsFile, 'w') or die("Can't update config file. Please set public write permissions on ".$settingsFile." and press refresh");
-		fwrite($fh, $settingsContents);
-		fclose($fh);
-		if (file_exists('lib/login.php')) {
-			header('Location: lib/login.php?message=trialDonateThanks&csrf='.$_SESSION["csrf"]);
-			echo "<script>window.location='lib/login.php?message=trialDonateThanks&csrf=".$_SESSION["csrf"]."';</script>";
-		} else {
-			header('Location: login.php?message=trialDonateThanks&csrf='.$_SESSION["csrf"]);
-			echo "<script>window.location='login.php?message=trialDonateThanks&csrf=".$_SESSION["csrf"]."';</script>";
-		}
-	} else {
-		if (file_exists('lib/login.php')) {
-			header('Location: lib/login.php?get=code&success=no&csrf='.$_SESSION["csrf"]);
-			echo "<script>window.location='lib/login.php?get=code&success=no&csrf=".$_SESSION["csrf"]."';</script>";
-		} else {
-			header('Location: login.php?get=code&success=no&csrf='.$_SESSION["csrf"]);
-			echo "<script>window.location='login.php?get=code&success=no&csrf=".$_SESSION["csrf"]."';</script>";
-		}
-	}
+// // If we're unlocking ICEcoder after donating
+// } elseif (isset($_POST['submit']) && (strpos($_POST['submit'],"Unlock ICEcoder")>-1)) {
+// 	if (generateHash(strClean($_POST['email']),$_POST['code'])==$_POST['code']) {
+// 		$settingsContents = getData($settingsFile);
+// 		// Replace our empty email & code with the one submitted by user
+// 		$settingsContents = str_replace('"licenseEmail"		=> "",','"licenseEmail"		=> "'.$_POST['email'].'",',$settingsContents);
+// 		$settingsContents = str_replace('"licenseCode"		=> "",','"licenseCode"		=> "'.$_POST['code'].'",',$settingsContents);
+// 		// Now update the config file
+// 		$fh = fopen($settingsFile, 'w') or die("Can't update config file. Please set public write permissions on ".$settingsFile." and press refresh");
+// 		fwrite($fh, $settingsContents);
+// 		fclose($fh);
+// 		if (file_exists('lib/login.php')) {
+// 			header('Location: lib/login.php?message=trialDonateThanks&csrf='.$_SESSION["csrf"]);
+// 			echo "<script>window.location='lib/login.php?message=trialDonateThanks&csrf=".$_SESSION["csrf"]."';</script>";
+// 		} else {
+// 			header('Location: login.php?message=trialDonateThanks&csrf='.$_SESSION["csrf"]);
+// 			echo "<script>window.location='login.php?message=trialDonateThanks&csrf=".$_SESSION["csrf"]."';</script>";
+// 		}
+// 	} else {
+// 		if (file_exists('lib/login.php')) {
+// 			header('Location: lib/login.php?get=code&success=no&csrf='.$_SESSION["csrf"]);
+// 			echo "<script>window.location='lib/login.php?get=code&success=no&csrf=".$_SESSION["csrf"]."';</script>";
+// 		} else {
+// 			header('Location: login.php?get=code&success=no&csrf='.$_SESSION["csrf"]);
+// 			echo "<script>window.location='login.php?get=code&success=no&csrf=".$_SESSION["csrf"]."';</script>";
+// 		}
+// 	}
 	
-// If we are on the login screen and not logged in
-} elseif (!$_SESSION['loggedIn']) {
-	// If the password hasn't been set and we're setting it
-	if ($ICEcoder["password"] == "" && isset($_POST['submit']) && (strpos($_POST['submit'],"set password")>-1)) {
-		$password = generateHash(strClean($_POST['password']));
-		$settingsContents = getData($settingsFile);
-		// Replace our empty password with the one submitted by user
-		$settingsContents = str_replace('"password"		=> "",','"password"		=> "'.$password.'",',$settingsContents);
-		// Also set the update checker preference
-		$checkUpdates = $_POST['checkUpdates']=="true" ? "true" : "false";
-		// once to cover the true setting, once to cover false
-		$settingsContents = str_replace('"checkUpdates"		=> true,','"checkUpdates"		=> '.$checkUpdates.',',$settingsContents);
-		$settingsContents = str_replace('"checkUpdates"		=> false,','"checkUpdates"		=> '.$checkUpdates.',',$settingsContents);
-		// Now update the config file
-		$fh = fopen($settingsFile, 'w') or die("Can't update config file. Please set public write permissions on ".$settingsFile." and press refresh");
-		fwrite($fh, $settingsContents);
-		fclose($fh);
-		// Create a duplicate version for the IP address of the domain if it doesn't exist yet
-		$serverAddr = $_SERVER['SERVER_ADDR'];
-		if ($serverAddr == "1" || $serverAddr == "::1") {
-			$serverAddr = "127.0.0.1";
-		}
-		$settingsFileAddr = 'config-'.$username.str_replace(".","_",$serverAddr).'.php';
-		if (!file_exists(dirname(__FILE__)."/".$settingsFileAddr)) {
-			if (!copy(dirname(__FILE__)."/".$settingsFile, dirname(__FILE__)."/".$settingsFileAddr)) {
-				die("Couldn't create $settingsFileAddr. Maybe you need write permissions on the lib folder?");
-			}
-		}
-		// Disable the enableRegistration config setting if the user had that option chosen
-		if (isset($_POST['disableFurtherRegistration'])) {
-			$updatedConfigSettingsFile = getData(dirname(__FILE__)."/".$configSettings);
-			if ($fUConfigSettings = fopen(dirname(__FILE__)."/".$configSettings, 'w')) {
-				$updatedConfigSettingsFile = str_replace('"enableRegistration"	=> true','"enableRegistration"	=> false',$updatedConfigSettingsFile);
-				fwrite($fUConfigSettings, $updatedConfigSettingsFile);
-				fclose($fUConfigSettings);
-			} else {
-				die("Cannot update config file lib/".$configSettings.". Please check write permissions on lib/ and try again");
-			}
-		}
-		// Set the session user level
-		if ($ICEcoder["multiUser"]) {
-			$_SESSION['username']=$_POST['username'];
-		}
-		$_SESSION['loggedIn'] = true;
-		include(dirname(__FILE__)."/../processes/on-user-new.php");
-		// Finally, load again as now this file has changed and auto login
-		header('Location: ../');
-		echo "<script>window.location='../';</script>";
-		die('Logging you in...');
-	}
-	// ===================================================
-	// We're likely showing the login screen at this point
-	// ===================================================
-} elseif ($ICEcoder['loginRequired'] && $_SESSION['loggedIn'] && $ICEcoder["password"]=="") {
-	header("Location: ../?logout");
-	echo "<script>window.location='../?logout';</script>";
-	die('Logging you out...');
-} else {
-	// ==================================
-	// Continue with whatever we're doing
-	// ==================================
-}
+// // If we are on the login screen and not logged in
+// } elseif (!$_SESSION['loggedIn']) {
+// 	// If the password hasn't been set and we're setting it
+// 	if ($ICEcoder["password"] == "" && isset($_POST['submit']) && (strpos($_POST['submit'],"set password")>-1)) {
+// 		$password = generateHash(strClean($_POST['password']));
+// 		$settingsContents = getData($settingsFile);
+// 		// Replace our empty password with the one submitted by user
+// 		$settingsContents = str_replace('"password"		=> "",','"password"		=> "'.$password.'",',$settingsContents);
+// 		// Also set the update checker preference
+// 		$checkUpdates = $_POST['checkUpdates']=="true" ? "true" : "false";
+// 		// once to cover the true setting, once to cover false
+// 		$settingsContents = str_replace('"checkUpdates"		=> true,','"checkUpdates"		=> '.$checkUpdates.',',$settingsContents);
+// 		$settingsContents = str_replace('"checkUpdates"		=> false,','"checkUpdates"		=> '.$checkUpdates.',',$settingsContents);
+// 		// Now update the config file
+// 		$fh = fopen($settingsFile, 'w') or die("Can't update config file. Please set public write permissions on ".$settingsFile." and press refresh");
+// 		fwrite($fh, $settingsContents);
+// 		fclose($fh);
+// 		// Create a duplicate version for the IP address of the domain if it doesn't exist yet
+// 		$serverAddr = $_SERVER['SERVER_ADDR'];
+// 		if ($serverAddr == "1" || $serverAddr == "::1") {
+// 			$serverAddr = "127.0.0.1";
+// 		}
+// 		$settingsFileAddr = 'config-'.$username.str_replace(".","_",$serverAddr).'.php';
+// 		if (!file_exists(dirname(__FILE__)."/".$settingsFileAddr)) {
+// 			if (!copy(dirname(__FILE__)."/".$settingsFile, dirname(__FILE__)."/".$settingsFileAddr)) {
+// 				die("Couldn't create $settingsFileAddr. Maybe you need write permissions on the lib folder?");
+// 			}
+// 		}
+// 		// Disable the enableRegistration config setting if the user had that option chosen
+// 		if (isset($_POST['disableFurtherRegistration'])) {
+// 			$updatedConfigSettingsFile = getData(dirname(__FILE__)."/".$configSettings);
+// 			if ($fUConfigSettings = fopen(dirname(__FILE__)."/".$configSettings, 'w')) {
+// 				$updatedConfigSettingsFile = str_replace('"enableRegistration"	=> true','"enableRegistration"	=> false',$updatedConfigSettingsFile);
+// 				fwrite($fUConfigSettings, $updatedConfigSettingsFile);
+// 				fclose($fUConfigSettings);
+// 			} else {
+// 				die("Cannot update config file lib/".$configSettings.". Please check write permissions on lib/ and try again");
+// 			}
+// 		}
+// 		// Set the session user level
+// 		if ($ICEcoder["multiUser"]) {
+// 			$_SESSION['username']=$_POST['username'];
+// 		}
+// 		$_SESSION['loggedIn'] = true;
+// 		include(dirname(__FILE__)."/../processes/on-user-new.php");
+// 		// Finally, load again as now this file has changed and auto login
+// 		header('Location: ../');
+// 		echo "<script>window.location='../';</script>";
+// 		die('Logging you in...');
+// 	}
+// 	// ===================================================
+// 	// We're likely showing the login screen at this point
+// 	// ===================================================
+// } elseif ($ICEcoder['loginRequired'] && $_SESSION['loggedIn'] && $ICEcoder["password"]=="") {
+// 	header("Location: ../?logout");
+// 	echo "<script>window.location='../?logout';</script>";
+// 	die('Logging you out...');
+// } else {
+// 	// ==================================
+// 	// Continue with whatever we're doing
+// 	// ==================================
+// }
 ?>

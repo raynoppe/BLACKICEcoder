@@ -3,7 +3,7 @@
 $ICEcoderSettings = array(
 	"versionNo"		=> "6.0",
 	"codeMirrorDir"		=> "CodeMirror",
-	"docRoot"		=> '/data/data/com.termux/files/home',	// $_SERVER['DOCUMENT_ROOT'] Set absolute path of another location if needed
+	"docRoot"		=> $_SERVER['DOCUMENT_ROOT'],	// $_SERVER['DOCUMENT_ROOT'] Set absolute path of another location if needed /data/data/com.termux/files/home/
 	"demoMode"		=> false,
 	"devMode"		=> true,
 	"fileDirResOutput"	=> "none",			// Can be none, raw, object, both (all but 'none' output to console)
@@ -13,6 +13,6 @@ $ICEcoderSettings = array(
 	"lineEnding"		=> "\n",
 	"newDirPerms"		=> 755,
 	"newFilePerms"		=> 644,
-	"enableRegistration"	=> false
+	"enableRegistration"	=> true
 );
 ?>
