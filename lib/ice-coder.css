@@ -75,10 +75,10 @@ h2 {font-size: 18px; font-weight: normal; color: #fff}
 .files .options {
 	transition: opacity 0.15s ease-in-out;
 }
-.files .options .optionsList {position: absolute; display: inline-block; visibility: hidden; background: #383838; height: 100%; padding: 23px 15px 15px 15px}
-.files .options .optionsList ul {list-style-type: none; line-height: 24px}
-.files .options .optionsList a {color: #666; text-decoration: none}
-.files .options .optionsList a:hover {color: #fff; cursor: pointer}
+.leftbar .optionsList { background: #383838; padding: 0px 15px 10px 15px;}
+.leftbar .optionsList ul {list-style-type: none; line-height: 24px}
+.leftbar .optionsList a {color: rgb(156, 156, 156); text-decoration: none}
+.leftbar .optionsList a:hover {color: #fff; cursor: pointer}
 .files input:focus, .findReplace input:focus, .findReplace select:focus, .password:focus {outline: 0; box-shadow: 0 0 10px 1px rgba(0,198,255,0.7)}
 .files .button {position: absolute; border: 0; background: #444; color: #eee; height:20px; margin-top: 16px; margin-left: 5px; font-size: 11px; cursor: pointer}
 .files .button:hover {background-color: #1d1d1b; color: #eee}
@@ -90,34 +90,28 @@ h2 {font-size: 18px; font-weight: normal; color: #fff}
 
 .editor {position: absolute; display: inline-block; top: 0; left: 15px; width: 600px}
 .editor .tabsBar {display: inline-block; height: 22px; width: 100%; margin-top: 20px; padding-left: 53px; background: #fff}
-.tabsBar .tab {position: absolute; display: none; height: 15px; padding: 5px 8px 2px 9px; border-right: 1px solid #ddd; color: #fff; white-space: nowrap; overflow: hidden; cursor: pointer; z-index: 1;
+.rightbarTabs .tab { display: none; height: 15px; padding: 5px 8px 2px 9px; border-right: 1px solid #ddd; color: #fff; white-space: nowrap; overflow: hidden; cursor: pointer; z-index: 1;
 	transition: width 0.15s ease-in-out;
 	transition: left 0.15s ease-in-out;
 }
-.tabsBar .tabSlide {
+.rightbarTabs .tabSlide {
 	transition: left 0.15s ease-in-out;
 }
-.tabsBar .tabDrag {
+.rightbarTabs .tabDrag {
 	transition: left 0s ease-in-out;
 }
-.tabsBar .tab .closeTab, .tabsBar .closeAllTabs {margin: 1px 0 0 5px; border-radius: 6px; cursor: pointer}
-.tabsBar .tab .closeTab {position: absolute; right: 7px}
-.tabsBar .alphaTabs {position: absolute; margin: 6px 0 0 -20px; border-radius: 6px; cursor: pointer}
-.tabsBar .alphaTabs:hover {background: #ccc}
-.tabsBar .closeAllTabs {position: absolute; margin: 6px 0 0 -36px}
-.tabsBar .closeAllTabs:hover {background: #ccc}
-.tabsBar .newTab {position: absolute; display: inline-block; height: 15px; padding: 4px 7px 3px 7px; background: #ddd; cursor: pointer; z-index: 0;
+.rightbarTabs .tab .closeTab, .tabsBar .closeAllTabs {margin: 1px 0 0 5px; border-radius: 6px; cursor: pointer}
+.rightbarTabs .tab .closeTab { margin: 0px 3px; float: right; }
+.rightbarTabs .alphaTabs { display: inline-block; margin: 6px 8px 0 8px; border-radius: 6px; cursor: pointer}
+.rightbarTabs .alphaTabs:hover {background: #ccc}
+.rightbarTabs .closeAllTabs { display: inline-block; margin: 6px 8px 0 8px; }
+.rightbarTabs .closeAllTabs:hover {background: #ccc}
+.rightbarTabs .newTab {display: inline-block; height: 15px; padding: 4px 7px 3px 7px; background: #ddd; cursor: pointer; z-index: 0;
 	transition: left 0.15s ease-in-out;
 }
 .editor .findBar {display: inline-block; height: 28px; width: 600px; color: #fff; background-color: #1d1d1b}
 .findBar .findReplace {padding-top: 2px; z-index: 1}
-.findReplace .selectWrapper {position: relative; display: inline-block}
-.findReplace .selectWrapper select {position: relative; padding: 1px; border: 0; background: url('../images/select-arrow.gif') no-repeat right #444; color: #fff; font-size: 10px; height: 16px; 
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	appearance: none;
-}
-.findReplace .findText {display: inline-block; height: 21px; font-size: 10px; margin: 6px 3px 0 43px}
+
 .findReplace .find {position: relative; width: 120px; height: 16px; border: 0; top: 3px; font-size: 10px; padding-left: 5px; margin-right: 3px; background: #444; color: #eee}
 .findReplace .replaceText {height: 21px; font-size: 10px; margin: 6px 2px 0 2px}
 .findReplace .replace {position: relative; width: 120px; height: 16px; border: 0; top: 3px; font-size: 10px; padding-left: 5px; background: #444; color: #eee}

@@ -6,134 +6,91 @@ $t = $text['settings-screen'];
 <!DOCTYPE html>
 
 <html>
-<head>
-<title>ICEcoder <?php echo $ICEcoder["versionNo"];?> settings screen</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="robots" content="noindex, nofollow">
-<link rel="stylesheet" type="text/css" href="settings-screen.css?microtime=<?php echo microtime(true);?>">
-<link rel="stylesheet" href="../<?php echo $ICEcoder["codeMirrorDir"]; ?>/lib/codemirror.css?microtime=<?php echo microtime(true);?>">
-<script src="../<?php echo $ICEcoder["codeMirrorDir"]; ?>/lib/codemirror-compressed.js?microtime=<?php echo microtime(true);?>"></script>
+	<head>
+		<title>ICEcoder <?php echo $ICEcoder["versionNo"];?> settings screen</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="robots" content="noindex, nofollow">
+		<link rel="stylesheet" type="text/css" href="settings-screen.css?microtime=<?php echo microtime(true);?>">
+		<link rel="stylesheet" href="../<?php echo $ICEcoder["codeMirrorDir"]; ?>/lib/codemirror.css?microtime=<?php echo microtime(true);?>">
+		<script src="../<?php echo $ICEcoder["codeMirrorDir"]; ?>/lib/codemirror-compressed.js?microtime=<?php echo microtime(true);?>"></script>
 
-<style type="text/css">
-.CodeMirror {position: absolute; width: 409px; height: 180px; font-size: <?php echo $ICEcoder["fontSize"];?>}
-.CodeMirror-scroll {overflow: hidden}
-/* Make sure this next one remains the 3rd item, updated with JS */
-.cm-tab {border-left-width: <?php echo $ICEcoder["visibleTabs"] ? "1px" : "0";?>; margin-left: <?php echo $ICEcoder["visibleTabs"] ? "-1px" : "0";?>; border-left-style: solid; border-left-color: rgba(255,255,255,0.2)}
-</style>
+		<style type="text/css">
+		.CodeMirror {position: absolute; width: 409px; height: 180px; font-size: <?php echo $ICEcoder["fontSize"];?>}
+		.CodeMirror-scroll {overflow: hidden}
+		/* Make sure this next one remains the 3rd item, updated with JS */
+		.cm-tab {border-left-width: <?php echo $ICEcoder["visibleTabs"] ? "1px" : "0";?>; margin-left: <?php echo $ICEcoder["visibleTabs"] ? "-1px" : "0";?>; border-left-style: solid; border-left-color: rgba(255,255,255,0.2)}
+		</style>
 
-<link rel="stylesheet" href="editor.css?microtime=<?php echo microtime(true);?>">
-<?php
-$themeArray = array();
-$handle = opendir('../'.$ICEcoder["codeMirrorDir"].'/theme/');
-while (false !== ($file = readdir($handle))) {
-	if ($file !== "." && $file != "..") {
-		array_push($themeArray,basename($file,".css"));
-	}
-}
-sort($themeArray);
-for ($i=0;$i<count($themeArray);$i++) {
-	echo '<link rel="stylesheet" href="../'.$ICEcoder["codeMirrorDir"].'/theme/'.$themeArray[$i].'.css?microtime='.microtime(true).'">'.PHP_EOL;
-}
-?>
-</head>
+		<link rel="stylesheet" href="editor.css?microtime=<?php echo microtime(true);?>">
+		<?php
+		$themeArray = array();
+		$handle = opendir('../'.$ICEcoder["codeMirrorDir"].'/theme/');
+		while (false !== ($file = readdir($handle))) {
+			if ($file !== "." && $file != "..") {
+				array_push($themeArray,basename($file,".css"));
+			}
+		}
+		sort($themeArray);
+		for ($i=0;$i<count($themeArray);$i++) {
+			echo '<link rel="stylesheet" href="../'.$ICEcoder["codeMirrorDir"].'/theme/'.$themeArray[$i].'.css?microtime='.microtime(true).'">'.PHP_EOL;
+		}
+		?>
+	</head>
 
 <body class="settings">
 
-<div class="infoPane">
-	<a href="https://icecoder.net" target="_blank"><img src="../images/ice-coder.png" alt="ICEcoder" class="logo"></a>
-
-	<h1 style="margin: 10px 0"><?php echo $t['settings'];?></h1>
-
-	<p>
-	<?php echo $t['version'];?>:<br>
-	v <?php echo $ICEcoder["versionNo"];?>
-	<br><br>
-
-	<?php echo $t['website'];?>:<br>
-	<a href="https://icecoder.net" target="_blank">https://icecoder.net</a>
-	<br><br>
-
-	<?php echo $t['git'];?>:<br>
-	<a href="https://github.com/mattpass/ICEcoder" target="_blank">https://github.com/mattpass/ICEcoder</a>
-	<br><br>
-
-	<?php echo $t['codemirror dir'];?>:<br>
-	<?php echo $ICEcoder["codeMirrorDir"]; ?>
-	<br><br>
-
-	<?php echo $t['codemirror version'];?>:<br>
-	<script>
-	document.write(CodeMirror.version);
-	</script>
-	<br><br>
-
-	<?php echo $t['file manager root'];?>:<br>
-	<?php echo $ICEcoder['root'] == "" ? "/" : $ICEcoder['root'];?>
-	<br><br>
-
-	<div style="font-size: 10px; line-height: 12px">
-		<?php echo $t['Get in contact...'];?><br>
-		<a href="https://www.twitter.com/icecoder" style="font-size: 10px" target="_blank">Twitter</a><br>
-		<a href="https://facebook.com/ICEcoder.net" style="font-size: 10px" target="_blank">Facebook</a><br>
-		<a href="https://groups.google.com/forum/#!forum/icecoder" style="font-size: 10px" target="_blank">Google Groups</a><br>
-		<a href="https://github.com/mattpass/ICEcoder" style="font-size: 10px" target="_blank">GitHub</a><br>
-		<a href="mailto:info@icecoder.net" style="font-size: 10px">Email</a><br><br>
-		<?php echo $t['You may use...'];?>
-	</div>
-	</p>
-</div>
-
-<form name="settings" action="settings.php" method="POST">
-
-<div class="tabContainer">
-	<div id="generalTab" class="tab tabActive" onclick="switchTab('general')">General</div>
-	<div id="styleTab" class="tab" onclick="switchTab('style')">Style</div>
-	<div id="accountsTab" class="tab" onclick="switchTab('accounts')">Accounts</div>
-	<div id="securityTab" class="tab" onclick="switchTab('security')">Security</div>
-</div>
-
-<div id="generalSection" class="section" style="display: block">
-
-	<div style="display: inline-block; margin-right: 40px">
-
-		<h2>language</h2><br>
-		<select onchange="showButton()" name="languageUser">
-		<?php
-		$langFiles = array("chinese-simplified.php","chinese-traditional.php","dutch.php","english.php","french.php","german.php","italian.php","norwegian.php","persian.php","portuguese-brazilian.php","spanish.php");
-		$langText = array("中国（简体）","中國（繁體）","Nederlands","English","Français","Deutsch","Italiano","Norsk","فارسی","Portugues(br)","Espa&ntilde;ol");
-		for ($i=0; $i<count($langFiles); $i++) {
-			echo '<option value="'.$langFiles[$i].'"'.($ICEcoder["languageUser"]==$langFiles[$i] ? ' selected' : '').'>'.$langText[$i].'</option>'.PHP_EOL;
-		}
-		?>
-		</select> <span class="info" style="display: inline-block; padding-top: 2px" title="Reload required after changing">[?]</span>
-		<br><br>
-
-		<h2><?php echo $t['functionality'];?></h2><br>
-		<input type="checkbox" onclick="showButton()" name="checkUpdates" value="true"<?php if($ICEcoder["checkUpdates"]) {echo ' checked';};?>> <?php echo $t['check for updates...'];?><br>
-		<input type="checkbox" onclick="showButton()" name="openLastFiles" value="true"<?php if($ICEcoder["openLastFiles"]) {echo ' checked';};?>> <?php echo $t['auto open last...'];?><br>
-		<input type="checkbox" onclick="showButton()" name="updateDiffOnSave" value="true"<?php if($ICEcoder["updateDiffOnSave"]) {echo ' checked';};?>> update diff pane on save
-		<br><br>
-
-		<h2><?php echo $t['assisting'];?></h2><br>
-		<input type="checkbox" onclick="showButton()" name="codeAssist" value="true"<?php if($ICEcoder["codeAssist"]) {echo ' checked';};?>> <?php echo $t['code assist'];?><br>
-		<br>
-		<?php echo $t['tag wrapper command'];?><br>
-		<select onchange="showButton()" name="tagWrapperCommand">
-			<option value="ctrl+alt"<?php if($ICEcoder["tagWrapperCommand"]=='ctrl+alt') {echo " selected";};?>>ctrl/cmd + alt</option>
-			<option value="alt-left"<?php if($ICEcoder["tagWrapperCommand"]=='alt-left') {echo " selected";};?>>alt left</option>
-		</select>
-		<br><br>
-
-		<?php echo $t['auto-complete on'];?><br>
-		<select onchange="showButton()" name="autoComplete">
-			<option value="ctrl+space"<?php if($ICEcoder["autoComplete"]=='ctrl+space') {echo " selected";};?>>ctrl/cmd + space</option>
-			<option value="keypress"<?php if($ICEcoder["autoComplete"]=='keypress') {echo " selected";};?>>keypress</option>
-		</select>
-		<br><br>
-
+<div class="settingcontainer">
+	<div class="infoPane">
+		<h1 style="margin: 10px 0"><?php echo $t['settings'];?></h1>
+		<a href="https://icecoder.net" target="_blank"><img src="../images/ice-coder.png" alt="ICEcoder" class="logo"></a>
 	</div>
 
-	<div style="display: inline-block">
+<div class="tabscontainer">
+	<form name="settings" action="settings.php" method="POST">
+
+	<div class="tabContainer">
+		<div id="generalTab" class="tab tabActive" onclick="switchTab('general')">General</div>
+		<div id="styleTab" class="tab" onclick="switchTab('style')">Style</div>
+		<div id="accountsTab" class="tab" onclick="switchTab('accounts')">Accounts</div>
+		<div id="securityTab" class="tab" onclick="switchTab('security')">Security</div>
+	</div>
+
+	<div id="generalSection" class="section">
+
+			<h2>language</h2><br>
+			<select onchange="showButton()" name="languageUser">
+			<?php
+			$langFiles = array("chinese-simplified.php","chinese-traditional.php","dutch.php","english.php","french.php","german.php","italian.php","norwegian.php","persian.php","portuguese-brazilian.php","spanish.php");
+			$langText = array("中国（简体）","中國（繁體）","Nederlands","English","Français","Deutsch","Italiano","Norsk","فارسی","Portugues(br)","Espa&ntilde;ol");
+			for ($i=0; $i<count($langFiles); $i++) {
+				echo '<option value="'.$langFiles[$i].'"'.($ICEcoder["languageUser"]==$langFiles[$i] ? ' selected' : '').'>'.$langText[$i].'</option>'.PHP_EOL;
+			}
+			?>
+			</select> <span class="info" style="display: inline-block; padding-top: 2px" title="Reload required after changing">[?]</span>
+			<br><br>
+
+			<h2><?php echo $t['functionality'];?></h2><br>
+			<input type="checkbox" onclick="showButton()" name="checkUpdates" value="true"<?php if($ICEcoder["checkUpdates"]) {echo ' checked';};?>> <?php echo $t['check for updates...'];?><br>
+			<input type="checkbox" onclick="showButton()" name="openLastFiles" value="true"<?php if($ICEcoder["openLastFiles"]) {echo ' checked';};?>> <?php echo $t['auto open last...'];?><br>
+			<input type="checkbox" onclick="showButton()" name="updateDiffOnSave" value="true"<?php if($ICEcoder["updateDiffOnSave"]) {echo ' checked';};?>> update diff pane on save
+			<br><br>
+
+			<h2><?php echo $t['assisting'];?></h2><br>
+			<input type="checkbox" onclick="showButton()" name="codeAssist" value="true"<?php if($ICEcoder["codeAssist"]) {echo ' checked';};?>> <?php echo $t['code assist'];?><br>
+			<br>
+			<?php echo $t['tag wrapper command'];?><br>
+			<select onchange="showButton()" name="tagWrapperCommand">
+				<option value="ctrl+alt"<?php if($ICEcoder["tagWrapperCommand"]=='ctrl+alt') {echo " selected";};?>>ctrl/cmd + alt</option>
+				<option value="alt-left"<?php if($ICEcoder["tagWrapperCommand"]=='alt-left') {echo " selected";};?>>alt left</option>
+			</select>
+			<br><br>
+
+			<?php echo $t['auto-complete on'];?><br>
+			<select onchange="showButton()" name="autoComplete">
+				<option value="ctrl+space"<?php if($ICEcoder["autoComplete"]=='ctrl+space') {echo " selected";};?>>ctrl/cmd + space</option>
+				<option value="keypress"<?php if($ICEcoder["autoComplete"]=='keypress') {echo " selected";};?>>keypress</option>
+			</select>
+			<br><br>
 
 		<h2>find &amp; replace</h2><br>
 		<?php echo $t['when finding in...'];?>:<br>
@@ -181,8 +138,6 @@ for ($i=0;$i<count($themeArray);$i++) {
 
 		<input type="checkbox" onclick="showButton();" name="deleteToTmp" value="true"<?php if($ICEcoder["deleteToTmp"]) {echo ' checked';};?>> <?php echo $t['deleting actually moves...'];?> <span class="info" title="<?php echo $t['local/server items...'];?>" style="position: absolute; margin-top: 6px">[?]</span>
 		<br><br>
-
-	</div>
 </div>
 
 <div id="styleSection" class="section" style="display: none">
@@ -435,6 +390,44 @@ var switchTab = function(tab) {
 <div class="update" id="updateButton" onClick="<?php echo $ICEcoder['demoMode'] ? "top.ICEcoder.message('Sorry, can\'t commit settings in demo mode')" : "validatePasswords()"; ?>">update</div>
 <input type="hidden" name="csrf" value="<?php echo $_SESSION["csrf"]; ?>">
 </form>
+</div>
+
+	<div class="generalinfo">
+		<p>
+			<?php echo $t['version'];?>:<br>
+			v <?php echo $ICEcoder["versionNo"];?>
+			<br><br>
+
+			<?php echo $t['git'];?>:<br>
+			<a href="https://gitlab.com/raynoppe/blackicecoder" target="_blank">https://gitlab.com/raynoppe/blackicecoder</a>
+			<br><br>
+
+			<?php echo $t['codemirror dir'];?>:<br>
+			<?php echo $ICEcoder["codeMirrorDir"]; ?>
+			<br><br>
+
+			<?php echo $t['codemirror version'];?>:<br>
+			<script>
+			document.write(CodeMirror.version);
+			</script>
+			<br><br>
+
+			<?php echo $t['file manager root'];?>:<br>
+			<?php echo $ICEcoder['root'] == "" ? "/" : $ICEcoder['root'];?>
+			<br><br>
+
+			<div style="font-size: 10px; line-height: 12px">
+				<?php echo $t['Get in contact...'];?><br>
+				<a href="https://www.twitter.com/raynoppe" style="font-size: 10px" target="_blank">Twitter</a><br>
+				<!-- <a href="https://facebook.com/ICEcoder.net" style="font-size: 10px" target="_blank">Facebook</a><br> -->
+				<!-- <a href="https://groups.google.com/forum/#!forum/icecoder" style="font-size: 10px" target="_blank">Google Groups</a><br> -->
+				<a href="https://gitlab.com/raynoppe" style="font-size: 10px" target="_blank">GitHub</a><br>
+				<a href="mailto:razor8088@gmail.com" style="font-size: 10px">Email</a><br><br>
+				<?php echo $t['You may use...'];?>
+			</div>
+			</p>
+	</div>
+</div>
 
 </body>
 

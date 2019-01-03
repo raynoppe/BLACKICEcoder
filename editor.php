@@ -57,7 +57,7 @@ if (array_search($ICEcoder["theme"],array("3024-day","base16-light","eclipse","e
 
 <style type="text/css">
 /* Make sure this next one remains the 1st item, updated with JS */
-.CodeMirror {position: absolute; top: 0; width: 100%; font-size: <?php echo $ICEcoder["fontSize"];?>; line-height: 1.3; z-index: 1}
+.CodeMirror {position: absolute; top: 0; width: 100%; height: 100%; font-size: <?php echo $ICEcoder["fontSize"];?>; line-height: 1.3; z-index: 1}
 .CodeMirror-scroll {} /* was: height: auto; overflow: visible */
 /* Make sure this next one remains the 3rd item, updated with JS */
 .cm-s-activeLine {background: <?php echo $activeLineBG;?> !important}

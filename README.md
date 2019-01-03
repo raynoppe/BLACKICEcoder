@@ -2,7 +2,7 @@
 
 ## Web IDE / browser code editor modified for Termux and smaller screens.
 
-This is a port of [ICEcoder](https://icecoder.net/).  
+This is a port of [ICEcoder](https://icecoder.net/).
 
 BLACKICEcoder is a web IDE / browser based code editor, which allows you to develop websites on your Andriod Device or locally on any Machine running PHP. It uses CodeMirror for code highlighting & editing, with a slick IDE wrapped around it to make the whole thing work. 
 

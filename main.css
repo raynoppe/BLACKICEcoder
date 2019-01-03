@@ -1,0 +1,130 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	font-family: arial, verdana, helvetica, sans-serif;
+	border: 0;
+	margin: 0;
+	padding: 0;
+	outline: 0;
+	font-size: 12px;
+	vertical-align: top;
+}
+.container {
+  padding: 0;
+  margin: 0;
+  position: absolute; 
+  display: flex; 
+  height: 100%; 
+  width: 100%;
+  background-color: #333;
+}
+.leftbar {
+  background-color: #333;
+  padding: 3px; 
+  width: 200px; 
+  display: flex;
+  flex-direction: column;
+}
+.lefbarMenu {
+  border: 0px solid #000; padding: 3px;
+}
+
+.lefbarMenu ul {list-style-type: none; line-height: 24px; padding-left: 15px}
+.lefbarMenu li {display: inline-block; padding: 18px 15px 0 0}
+.lefbarMenu a {color: #666; text-decoration: none}
+.lefbarMenu a:hover {color: #fff; cursor: pointer}
+
+.leftbarMenu2 {
+  border: 0px solid #000; padding: 3px;
+}
+.leftbarFiles {
+  border: 0px solid #FFF; 
+  padding: 3px; 
+  flex-grow: 1;
+  display: flex;
+  overflow: scroll;
+}
+.leftbarFiles .frame {
+  width: 100%;
+}
+.rightbar {
+  flex-grow: 1; 
+  display: flex;
+  flex-direction: column;
+}
+.rightbarMenu {
+  border: 0px solid #000; padding: 3px;
+  padding: 5px;
+}
+.rightbarTabs {
+  background-color: #EFEFEF;
+  min-width: 0px;
+  overflow: hidden;
+  width: 100%;
+}
+.rightbarFind {
+  display: flex;
+  padding: 3px;
+}
+rightbarFindForm {
+  margin: 0;
+  padding: 0;
+}
+.rightbarFind .findText {display: inline-block; font-size: 10px; margin: 6px 5px 0px 5px} 
+.rightbarFind .selectWrapper {position: relative; display: inline-block}
+.rightbarFind .selectWrapper select {position: relative; padding: 1px; border: 0; background: url('../images/select-arrow.gif') no-repeat right #444; color: #fff; font-size: 10px; height: 16px; 
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+.rightbarContent {
+  border: 0px solid #000; 
+  padding: 3px; 
+  flex-grow: 1;
+  flex: 1 1 auto;
+  display: flex;
+}
+.rightbarFooter {
+  border: 0px solid #000; padding: 3px;
+}
+.rightbarFooter .nesting { display: inline-block; padding: 5px; margin-top: 5px; left: 260px; border-radius: 5px; background-color: #0b0; cursor: default}
+.rightbarFooter .versionsDisplay { display: inline-block; line-height: 21px; color: #fff; font-weight: bold; cursor: pointer; margin-left: 20px;}
+.rightbarFooter .splitPaneControls { display: inline-block; text-align: center; margin-left: 20px;}
+.rightbarFooter .splitPaneControls .off { display: inline-block;  width: 18px; height: 18px; margin-right: 10px; background: url('../images/split-pane-controls.gif') no-repeat 0 0; background-color: #fff; cursor: pointer}
+.rightbarFooter .splitPaneControls .on { display: inline-block; width: 19px; height: 18px; background: url('../images/split-pane-controls.gif') no-repeat -18px 0; background-color: #fff; cursor: pointer}
+.rightbarFooter .splitPaneNames { display: inline-block; width: 100px; text-align: center; margin-top: 9px; color: #555; opacity: 0; transition: opacity 0.3s ease-in-out}
+.rightbarFooter .charDisplay, .rightbarFooter .byteDisplay {  font-weight: bold; font-size: 12px; color: #fff; text-align: right; cursor: pointer}
+.code {
+  width: 100%;
+}
+#optionsFile {
+ display: none;
+}
+#optionsEdit {
+  display: none;
+}
+#optionsSource {
+  display: none;
+}
+#optionsHelp {
+  display: none;
+}
+.serverMessage {
+
+}
+
+.topbarbutton {
+  border: 1px solid #FFF;
+  padding: 5px;
+  margin: 3px;
+  color: #FFF;
+  text-decoration: none;
+  background-color: #333;
+  border-radius: 2px;
+}
