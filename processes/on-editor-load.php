@@ -8,13 +8,13 @@ Purpose:	This file is run when ICEcoder editor has loaded
 Langs:		Anything - PHP, JS etc
 //-->
 <script>
-CodeMirror.commands.autocomplete = function(cm) {
-	var langType = top.ICEcoder.caretLocType;
-	if (["JavaScript","CoffeeScript","TypeScript","SQL","CSS","HTML","XML","Content"].indexOf(langType)>-1) {
-		if (langType=="XML"||langType=="Content") {langType="HTML"};
-		CodeMirror.showHint(cm,CodeMirror.hint[langType.toLowerCase()]);
-	}
-}
+// CodeMirror.commands.autocomplete = function(cm) {
+// 	var langType = top.ICEcoder.caretLocType;
+// 	if (["JavaScript","CoffeeScript","TypeScript","SQL","CSS","HTML","XML","Content"].indexOf(langType)>-1) {
+// 		if (langType=="XML"||langType=="Content") {langType="HTML"};
+// 		CodeMirror.showHint(cm,CodeMirror.hint[langType.toLowerCase()]);
+// 	}
+// }
 
 // Switch the CodeMirror mode on demand
 top.ICEcoder.switchMode = function(mode) {

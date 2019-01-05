@@ -507,7 +507,7 @@ if (!$error && $_GET['action']=="save") {
 					var userVersionFile = cM.getValue();
 					/* Revert back to original */
 					cM.setValue(loadedFile.value);
-					top.ICEcoder.savedPoints[thisTab-1] = cM.changeGeneration();
+					// top.ICEcoder.savedPoints[thisTab-1] = cM.changeGeneration();
 					top.ICEcoder.savedContents[thisTab-1] = cM.getValue();
 					top.ICEcoder.openFileMDTs[top.ICEcoder.selectedTab-1] = "'.$filemtime.'";
 					top.ICEcoder.openFileVersions[top.ICEcoder.selectedTab-1] = "'.$fileCountInfo['count'].'";

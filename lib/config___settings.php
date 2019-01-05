@@ -13,6 +13,6 @@ $ICEcoderSettings = array(
 	"lineEnding"		=> "\n",
 	"newDirPerms"		=> 755,
 	"newFilePerms"		=> 644,
-	"enableRegistration"	=> true
+	"enableRegistration"	=> false
 );
 ?>

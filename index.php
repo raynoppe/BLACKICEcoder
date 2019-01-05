@@ -44,14 +44,14 @@ echo "?microtime=".microtime(true);
 iceRoot = "<?php echo $ICEcoder['root']; ?>";
 
 window.onbeforeunload = function() {
-	if(top.ICEcoder.autoLogoutTimer < top.ICEcoder.autoLogoutMins*60) {
-		for(var i=1;i<=ICEcoder.savedPoints.length;i++) {
-			if (ICEcoder.savedPoints[i-1]!=top.ICEcoder.getcMInstance(i).changeGeneration()) {
-				return "<?php echo $t['You have some...'];?>.";
-			}
-		}
-		return "<?php echo $t['Are you sure...'];?>";
-	}
+	// if(top.ICEcoder.autoLogoutTimer < top.ICEcoder.autoLogoutMins*60) {
+	// 	for(var i=1;i<=ICEcoder.savedPoints.length;i++) {
+	// 		if (ICEcoder.savedPoints[i-1]!=top.ICEcoder.getcMInstance(i).changeGeneration()) {
+	// 			return "<?php echo $t['You have some...'];?>.";
+	// 		}
+	// 	}
+	// 	return "<?php echo $t['Are you sure...'];?>";
+	// }
 }
 
 t = {
@@ -134,7 +134,7 @@ $t = $text['index'];
 			echo "top.ICEcoder.githubAuthTokenSet = true;";
 		}
 		echo "top.ICEcoder.csrf = '".$_SESSION["csrf"]."';";
-?>ICEcoder.init()<?php echo $updateMsg.$onLoadExtras;?>;top.ICEcoder.content.style.visibility='visible';top.ICEcoder.filesFrame.contentWindow.frames['processControl'].location.href = 'processes/on-load.php';<?php if(isset($_GET["display"]) && $_GET["display"] == "updated") {echo "top.ICEcoder.updated();";};?>" onKeyDown="return ICEcoder.interceptKeys('coder',event);" onKeyUp="parent.ICEcoder.resetKeys(event);" onBlur="parent.ICEcoder.resetKeys(event);">
+?>ICEcoder.init()<?php echo $updateMsg.$onLoadExtras;?>;<?php if(isset($_GET["display"]) && $_GET["display"] == "updated") {echo "top.ICEcoder.updated();";};?>" onKeyDown="return ICEcoder.interceptKeys('coder',event);" onKeyUp="parent.ICEcoder.resetKeys(event);" onBlur="parent.ICEcoder.resetKeys(event);">
   <div id="blackMask" class="blackMask" onClick="if (!ICEcoder.overPopup) {ICEcoder.showHide('hide',this)}" onContextMenu="return false">
     <div class="popupVCenter">
       <div class="popup" id="mediaContainer"></div>
@@ -150,6 +150,15 @@ $t = $text['index'];
       </div>
     </div>
   </div>
+
+  <div id="plugins" class="plugins" style="<?php echo $ICEcoder["pluginPanelAligned"];?>: 0" onMouseOver="top.ICEcoder.showHidePlugins('show')" onMouseOut="top.ICEcoder.showHidePlugins('hide')" onClick="top.ICEcoder.showHidePlugins('hide')">
+	<div style="padding: 15px">
+		<a nohref onClick="top.ICEcoder.showColorPicker(top.document.getElementById('color') ? top.document.getElementById('color').value : '#123456')" title="Farbtastic
+    <?php echo $t['Color picker'];?>"><img src="images/color-picker.png" style="cursor: pointer" alt="Color Picker"></a><br><br>
+		<div id="pluginsOptional"><?php echo $pluginsDisplay; ?></div>
+		<a nohref onclick="top.ICEcoder.pluginsManager()" title="<?php echo $t['Plugins Manager'];?>" style="color: #fff; cursor: pointer">+ / -</a>
+	</div>
+</div>
 
   <div class="container">
     <div class="leftbar" id="leftbar">
@@ -185,8 +194,6 @@ $t = $text['index'];
           <li><a nohref onclick="ICEcoder.zipIt(top.ICEcoder.selectedFiles[top.ICEcoder.selectedFiles.length-1])"><?php echo $t['Zip'];?></a></li>
           <li><a nohref onclick="ICEcoder.propertiesScreen(top.ICEcoder.selectedFiles[top.ICEcoder.selectedFiles.length-1])"><?php echo $t['Properties'];?>...</a></li>
           <li><a nohref onClick="ICEcoder.printCode()"><?php echo $t['Print'];?>...</a></li>
-          <li><a nohref onClick="ICEcoder.fullScreenSwitcher()"><?php echo $t['Fullscreen toggle'];?></a></li>
-          <li><a nohref onClick="ICEcoder.logout()"><?php echo $t['Logout'];?></a></li>
         </ul>
       </div>
       <div id="optionsEdit" class="optionsList">
@@ -268,69 +275,17 @@ $t = $text['index'];
     </div>
 
     <div class="rightbar">
-      <div class="rightbarMenu" id="header">
-        
-        <a href="javascript: top.ICEcoder.saveFile();" class="topbarbutton" style="float: right;"><img src="/images/cd_16x16.png" /> Save</a>
-        <a href="javascript: showHide('leftbar');" class="topbarbutton" style="float: left;"><img src="/images/list_nested_16x14.png" /></a>
-      </div>
-        <div class="rightbarTabs" id="tabsBar" onContextMenu="return false">
-        <a nohref onClick="top.ICEcoder.closeAllTabs()"><img src="images/nav-close-all.gif" class="closeAllTabs" title="<?php echo $t['Close all tabs'];?>"></a>
-        <a nohref onClick="top.ICEcoder.alphaTabs()"><img src="images/nav-alpha.png" class="alphaTabs" title="<?php echo $t['Alphabetize tabs'];?>"></a>
-        <?php
-        for ($i=1;$i<=100;$i++) {
-          echo '<div id="tab'.$i.'" class="tab" onMouseDown="ICEcoder.canSwitchTabs ? ICEcoder.switchTab(parseInt(this.id.slice(3),10)) : ICEcoder.canSwitchTabs=true; thisColor=top.ICEcoder.tabFGselected; if (!top.ICEcoder.overCloseLink) {ICEcoder.tabDragStart(parseInt(this.id.slice(3),10))}; if (event.button==1) {ICEcoder.closeTab(parseInt(this.id.slice(3),10)); return false};" onMouseOver="thisColor=this.style.color;this.style.color=top.ICEcoder.tabFGselected" onMouseOut="this.style.color=thisColor"></div>';
-        }
-        ?><div class="newTab" onClick="ICEcoder.newTab()" id="newTab">+</div>
-        
+      
+      <div class="rightbarTabs" id="tabsBar" onContextMenu="return false">
+        <a href="javascript: showHide('leftbar');" ><img src="/images/98-document-storage.png" class="tabbarimg" /></a>
+        <div style="display: inline-block;" id="divcontainer"></div>
       </div>
 
-      <div class="rightbarFind">
-        <form class="rightbarFindForm" name="findAndReplace" onSubmit="ICEcoder.findReplace(top.document.getElementById('find').value,false,true);return false">
-          <div class="findText"><?php echo $t['Find'];?></div>
-          <input type="text" name="find" value="" id="find" class="textbox find" onKeyUp="ICEcoder.findReplace(top.document.getElementById('find').value,true,false,event.keyCode == 27)">
-          <div class="selectWrapper" style="width: 41px">
-            <select name="connector" onChange="ICEcoder.findReplaceOptions()" style="width: 40px; margin-top: 4px">
-              <option><?php echo $t['in'];?></option>
-              <option><?php echo $t['and'];?></option>
-            </select>
-          </div>
-          <div class="replaceText" id="rText" style="display: none">
-            <div class="selectWrapper" style="width: 75px; overflow: visible">
-              <select name="replaceAction" style="width: 72px; margin-top: -2px">
-                <option><?php echo $t['replace'];?></option>
-                <option><?php echo $t['replace all'];?></option>
-              </select>
-            </div>
-            with
-				  </div>
-          <input type="text" name="replace" value="" id="replace" class="textbox replace" style="display: none">
-          <div class="targetText" id="rTarget" style="display: none">in</div>
-          <div class="selectWrapper" style="width: 104px">
-						<select name="target" onChange="ICEcoder.updateResultsDisplay(this.value=='this document' ? 'show' : 'hide')" style="width: 101px; margin-top: 4px; margin-left: 2px">
-							<option><?php echo $t['this document'];?></option>
-							<option><?php echo $t['open documents'];?></option>
-							<option><?php echo $t['all files'];?></option>
-							<option><?php echo $t['all filenames'];?></option>
-						</select>
-					</div>
-				  <input type="submit" name="submit" id="findReplaceSubmit" value="&gt;&gt;" class="submit">
-				  <div class="results" id="results"></div>
-			    <input type="hidden" name="csrf" value="<?php echo $_SESSION["csrf"]; ?>">
-        </form>
-      </div>
-      <div class="rightbarContent">
-        <iframe name="contentFrame" id="content" src="editor.php" class="code" scrolling="no"></iframe>
+      <div id="rightbarContent" class="rightbarContent">
+        
       </div>
       
-      <div class="rightbarFooter">
-        <div class="nesting" id="nestValid"></div>
-        <div class="versionsDisplay" id="versionsDisplay" onclick="top.ICEcoder.versionsScreen(top.ICEcoder.openFiles[top.ICEcoder.selectedTab-1].replace(/\//g,'|'))"></div>
-        <div class="splitPaneControls" id="splitPaneControls"><div class="off" id="splitPaneControlsOff" title="<?php echo $t['Single pane'];?>" onclick="top.ICEcoder.setSplitPane('off')"></div><div class="on" id="splitPaneControlsOn" title="<?php echo $t['Diff pane also'];?>" onclick="top.ICEcoder.setSplitPane('on')" style="opacity: 0.5"></div></div>
-        <div class="splitPaneNames" id="splitPaneNamesMain">Main Pane</div>
-        <div class="splitPaneNames" id="splitPaneNamesDiff">Diff Pane</div><br/>
-        <div class="byteDisplay" id="byteDisplay" style="display: none" onClick="top.ICEcoder.showDisplay('char')"></div>
-        <div class="charDisplay" id="charDisplay" style="display: inline-block" onClick="top.ICEcoder.showDisplay('byte')"></div>
-      </div>
+     
     </div>
   </div>
 <script>
@@ -364,7 +319,12 @@ ICEcoder.initAliases();
 setTimeout(function() {
 			console.log('home');
 			ICEcoder.setLayout('dontSetEditor');
-		},2000);
+    },2000);
+    
+    switchTab = function() {
+      console.log('hello');
+      top.ICEcoder.switchTab();
+    }
 </script>
 </body>
 </html>

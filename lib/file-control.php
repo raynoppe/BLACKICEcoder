@@ -187,17 +187,17 @@ if (action=="load") {
 				// Set the value & innerHTML of the code textarea to that of our loaded file plus make it visible (it's hidden on ICEcoder's load)
 				top.ICEcoder.switchMode();
 				cM = top.ICEcoder.getcMInstance();
-				cM.setValue(document.getElementById('loadedFile').value);
-				top.ICEcoder.savedPoints[top.ICEcoder.selectedTab-1] = cM.changeGeneration();
-				top.ICEcoder.savedContents[top.ICEcoder.selectedTab-1] = cM.getValue();
+				// cM.setValue(document.getElementById('loadedFile').value);
+				// top.ICEcoder.savedPoints[top.ICEcoder.selectedTab-1] = cM.changeGeneration();
+				// top.ICEcoder.savedContents[top.ICEcoder.selectedTab-1] = cM.getValue();
 				top.document.getElementById('content').style.visibility='visible';
 				top.ICEcoder.switchTab(top.ICEcoder.selectedTab,'noFocus');
 				setTimeout(function(){top.ICEcoder.filesFrame.contentWindow.focus();},0);
 
 				// Then clean it up, set the text cursor, update the display and get the character data
 				top.ICEcoder.contentCleanUp();
-				top.ICEcoder.content.contentWindow['cM'+top.ICEcoder.cMInstances[top.ICEcoder.selectedTab-1]].removeLineClass(top.ICEcoder['cMActiveLinecM'+top.ICEcoder.cMInstances[top.ICEcoder.selectedTab-1]], "background");
-				top.ICEcoder['cMActiveLinecM'+top.ICEcoder.selectedTab] = top.ICEcoder.content.contentWindow['cM'+top.ICEcoder.cMInstances[top.ICEcoder.selectedTab-1]].addLineClass(0, "background", "cm-s-activeLine");
+				// top.ICEcoder.content.contentWindow['cM'+top.ICEcoder.cMInstances[top.ICEcoder.selectedTab-1]].removeLineClass(top.ICEcoder['cMActiveLinecM'+top.ICEcoder.cMInstances[top.ICEcoder.selectedTab-1]], "background");
+				// top.ICEcoder['cMActiveLinecM'+top.ICEcoder.selectedTab] = top.ICEcoder.content.contentWindow['cM'+top.ICEcoder.cMInstances[top.ICEcoder.selectedTab-1]].addLineClass(0, "background", "cm-s-activeLine");
 				top.ICEcoder.nextcMInstance++;
 				top.ICEcoder.openFileMDTs.push('<?php echo $serverType=="Linux" ? filemtime($file) : "1000000"; ?>');
 				top.ICEcoder.openFileVersions.push(<?php
