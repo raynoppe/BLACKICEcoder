@@ -36,7 +36,7 @@ echo '<div style="display: inline-block; width: 200px">SESSION, BEFORE SET:</div
 if (!isset($_GET["string"])) {
 	$_SESSION["string"] = md5(uniqid(mt_rand(), true));
 	header("Location: test.php?string=".$_SESSION["string"]);
-	echo "<script>window.location = 'test.php?string=".$_SESSION["string"]."';<//script>";
+	echo "<script>window.location = 'test.php?string=".$_SESSION["string"]."';</script>";
 	die('Rerirect didn\'t happen...');
 }
 
