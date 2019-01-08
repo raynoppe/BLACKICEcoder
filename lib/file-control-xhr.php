@@ -1001,7 +1001,7 @@ echo '{
 		"timeEnd": 0,
 		"timeTaken": 0,
 		"csrf": "'.xssClean($_GET['csrf'],"html").'",
-		"doNext" : "'.preg_replace('/\r|\n/','',str_replace('	','',str_replace('"','\"',$doNext))).'top.ICEcoder.switchMode();"
+		"doNext" : "'.preg_replace('/\r|\n/','',str_replace('	','',str_replace('"','\"',$doNext))).';"
 	},
 	"status": {
 		"error" : '.($error ? 'true' : 'false').',

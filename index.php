@@ -69,7 +69,7 @@ $t = $text['index'];
 ?>
 }
 </script>
-<script language="JavaScript" src="lib/ice-coder<?php if (!$ICEcoder['devMode']) {echo '.min';};?>.js?microtime=<?php echo microtime(true);?>"></script>
+<script language="JavaScript" src="lib/ice-coder.js?microtime=<?php echo microtime(true);?>"></script>
 <!-- <script src="lib/hnl.mobileConsole.js"></script> -->
 <script src="lib/mmd.js?microtime=<?php echo microtime(true);?>"></script>
 <script src="lib/draggabilly.pkgd.min.js?microtime=<?php echo microtime(true);?>"></script>
@@ -163,14 +163,9 @@ $t = $text['index'];
   <div class="container">
     <div class="leftbar" id="leftbar">
       <div class="lefbarMenu" id="fileNav">
-      <ul>
-        <li><a nohref onclick="showHideMenu('optionsFile')" id="optionsFileNav"><?php echo $t['File'];?></a></li>
-        <li><a nohref onclick="showHideMenu('optionsEdit')" id="optionsEditNav"><?php echo $t['Edit'];?></a></li>
-        <li><a nohref onclick="showHideMenu('optionsSource')" id="optionsSourceNav"><?php echo $t['Source'];?></a></li>
-        <li><a nohref onclick="showHideMenu('optionsHelp')" id="optionsHelpNav"><?php echo $t['Help'];?></a></li>
-      </ul>
+        <a nohref onclick="showHideMenu('optionsFile')" id="optionsFileNav"><?php echo $t['File'];?></a>
       </div>
-      <div class="serverMessage" id="serverMessage">Test</div>
+      
       <div id="githubNav" class="githubNav">
         <div class="commit" id="githubNavCommit" onclick="top.ICEcoder.githubAction('commit')">Commit</div>
         <div class="selected" id="githubNavSelectedCount">Selected: 0</div>
@@ -194,32 +189,7 @@ $t = $text['index'];
           <li><a nohref onclick="ICEcoder.zipIt(top.ICEcoder.selectedFiles[top.ICEcoder.selectedFiles.length-1])"><?php echo $t['Zip'];?></a></li>
           <li><a nohref onclick="ICEcoder.propertiesScreen(top.ICEcoder.selectedFiles[top.ICEcoder.selectedFiles.length-1])"><?php echo $t['Properties'];?>...</a></li>
           <li><a nohref onClick="ICEcoder.printCode()"><?php echo $t['Print'];?>...</a></li>
-        </ul>
-      </div>
-      <div id="optionsEdit" class="optionsList">
-        <ul>
-          <li><a nohref onclick="ICEcoder.undo()"><?php echo $t['Undo'];?></a></li>
-          <li><a nohref onclick="ICEcoder.redo()"><?php echo $t['Redo'];?></a></li>
-          <li><a nohref onclick="ICEcoder.indent('more')"><?php echo $t['Indent more'];?></a></li>
-          <li><a nohref onclick="ICEcoder.indent('less')"><?php echo $t['Indent less'];?></a></li>
-          <li><a nohref onclick="ICEcoder.autocomplete()"><?php echo $t['Autocomplete'];?></a></li>
-          <li><a nohref onclick="ICEcoder.lineCommentToggle()"><?php echo $t['Comment/Uncomment'];?></a></li>
-          <li><a nohref onclick="ICEcoder.jumpToDefinition()"><?php echo $t['Jump to Definition'];?></a></li>
           <li><a nohref onClick="ICEcoder.settingsScreen()"><?php echo $t['Settings'];?></a></li>
-        </ul>
-      </div>
-      <div id="optionsSource" class="optionsList">
-        <ul>
-          <li><a nohref onclick="ICEcoder.goLocalhostRoot()">Localhost</a></li>
-          <li><a nohref onclick="ICEcoder.ftpManager()">FTP</a></li>
-          <li><a nohref onclick="ICEcoder.githubManager()">GitHub</a></li>
-          <!--
-          <li><a nohref onclick="ICEcoder.message('SVN integration coming soon')">SVN</a></li>
-          <li><a nohref onclick="ICEcoder.message('Bitbucket integration coming soon\n\nCan you help with this? Get involved at icecoder.net')">Bitbucket</a></li>
-          <li><a nohref onclick="ICEcoder.message('Amazon AWS integration coming soon\n\nCan you help with this? Get involved at icecoder.net')">Amazon AWS</a></li>
-          <li><a nohref onclick="ICEcoder.message('Dropbox integration coming soon\n\nCan you help with this? Get involved at icecoder.net')">Dropbox</a></li>
-          <li><a nohref onclick="ICEcoder.message('SSH integration coming soon\n\nCan you help with this? Get involved at icecoder.net')">SSH</a></li>
-          //-->
         </ul>
       </div>
       <div id="optionsHelp" class="optionsList">
@@ -235,6 +205,8 @@ $t = $text['index'];
         <iframe id="filesFrame" class="frame" name="ff" src="files.php" style="opacity: 0" onLoad="this.style.opacity='1';this.contentWindow.onscroll=function(){top.ICEcoder.mouseDown=false; top.ICEcoder.mouseDownInCM=false}"></iframe>
         
       </div>
+
+      <div class="serverMessage" id="serverMessage">Test</div>
 
       <div id="fileMenu" class="fileMenu" onMouseOver="ICEcoder.changeFilesW('expand')" onMouseOut="ICEcoder.changeFilesW('contract');top.ICEcoder.hideFileMenu()" style="opacity: 0" onContextMenu="return false">
         <span id="folderMenuItems">
@@ -298,7 +270,7 @@ $t = $text['index'];
     }
   }
   const showHideMenu = function(elem) {
-    var winlist = ['optionsFile','optionsEdit','optionsSource','optionsHelp'];
+    var winlist = ['optionsFile'];
     for ( win of winlist ) {
       const x = document.getElementById(win);
       if ( elem === win ) {

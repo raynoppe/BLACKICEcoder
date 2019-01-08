@@ -234,27 +234,28 @@ switch ($ext) {
 		.editorfoot {
 			display: flex;
 			height: 35px;
-			justify-content: center;
+			justify-content: left;
 		}
 		.imgbuttons {
-			padding: 3px;
+			padding: 3px 8px;
 			border: 0px solid #fff;
 			margin: 3px;
 			border-radius: 3px;
 			background-color: #666;
+			margin-right: 8px;
 		}
 	</style>
 </head>
 <body>
 
 <div class="editorcontainer">
+	<div class="editorfoot">
+		<a href="javascript:savefile()" class="imgbuttons"><img src="/images/425-floppy.png" width="20" height="20" /></a>
+		<a href="javascript:showfind()" class="imgbuttons"><img src="/images/404-magnifying-glass.png" width="20" height="20" /></a>
+		<a href="javascript:showHideCN()" class="imgbuttons"><img src="/images/259-paper-map.png" width="20" height="20" /></a>
+	</div>
 	<div class="monacocontainer" id="container"></div>
 	<div class="editoralert" id="editoralert">-- loading --</div>
-	<div class="editorfoot">
-		<a href="javascript:showHideCN()" class="imgbuttons"><img src="/images/259-paper-map.png" width="20" height="20" /></a>
-		<a href="javascript:showfind()" class="imgbuttons"><img src="/images/404-magnifying-glass.png" width="20" height="20" /></a>
-		<a href="javascript:savefile()" class="imgbuttons"><img src="/images/425-floppy.png" width="20" height="20" /></a>
-	</div>
 </div>
 <textarea id="intext" style="display: none;"><?php echo $loadedFile; ?></textarea>
 <script src="monaco/min/vs/loader.js"></script>
@@ -268,7 +269,7 @@ switch ($ext) {
 	require(['vs/editor/editor.main'], function() {
 		editor = monaco.editor.create(document.getElementById('container'), {
 			theme: 'vs-dark',
-      value: texttoedit,
+      		value: texttoedit,
 			language: '<?php echo $uselang; ?>',
 			minimap: {
             enabled: false

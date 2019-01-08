@@ -12,3 +12,7 @@ if(!event.ctrlKey && !top.ICEcoder.cmdKey) {
     top.ICEcoder.openFile()
   }
 }
+
+this.ICEcoder = function() {
+ console.log('hello');
+}
