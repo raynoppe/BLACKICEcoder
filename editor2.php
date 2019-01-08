@@ -180,7 +180,7 @@ h2 {color: rgba(0,198,255,0.7)}
 	<div style="float: left">
 		<h2><?php echo $t['dev mode'];?> <?php echo $ICEcoder['devMode'] ? "on" : "off";?></h2>
 		<span class="heading"><?php echo $t['Status'];?>:</span><br>
-		<?php echo $t['Using']?> <?php echo $ICEcoder['devMode'] ? "ice-coder.js" : "ice-coder.min.js";?> <a title="<?php echo $t['You can switch...'];?>" class="info">[?]</a>
+		<?php echo $t['Using']?> <?php echo $ICEcoder['devMode'] ? "ice-coder.js" : "ice-coder.js";?> <a title="<?php echo $t['You can switch...'];?>" class="info">[?]</a>
 	</div>
 	<div style="clear: both"></div>
 </div>
