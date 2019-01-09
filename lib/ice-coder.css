@@ -82,8 +82,10 @@ h2 {font-size: 18px; font-weight: normal; color: #fff}
 	width: 150px;
 	top: 35px;
 	border-radius: 0px 0px 5px 0px;
+	overflow: auto;
 }
 .leftbar .optionsList ul {list-style-type: none; line-height: 24px}
+.leftbar .optionsList li { margin-bottom: 12px; }
 .leftbar .optionsList a {color: rgb(156, 156, 156); text-decoration: none}
 .leftbar .optionsList a:hover {color: #fff; cursor: pointer}
 .files input:focus, .findReplace input:focus, .findReplace select:focus, .password:focus {outline: 0; box-shadow: 0 0 10px 1px rgba(0,198,255,0.7)}

@@ -11,7 +11,7 @@
 .fileManager .pft-directory, .fileManager .pft-file {list-style-image: url(../images/blank.gif)}
 .fileManager ul, .fileManager li  {margin-left: 15px; white-space: nowrap}
 .fileManager li  {
-	margin-bottom: 7px;
+	margin-bottom: 12px;
 }
 	
 /* Default file */

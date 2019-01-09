@@ -39,7 +39,7 @@ if ($isGitHubRepoDir) {
 	echo '<div title="GitHub" onClick="top.ICEcoder.githubDiffToggle()" class="github'.$classExtra.'"></div>';
 }
 ?>
-
+<br/>
 <ul class="fileManager">
 <li class="pft-directory dirOpen"><a nohref title="/" onMouseOver="top.ICEcoder.overFileFolder('folder','/')" onMouseOut="top.ICEcoder.overFileFolder('folder','')" onClick="top.ICEcoder.openCloseDir(this)" style="position: relative; left:-22px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span id="|">/ <?php
 echo $iceRoot == "" ? $t['ROOT'] : trim($iceRoot,"/");

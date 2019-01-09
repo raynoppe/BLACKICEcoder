@@ -147,7 +147,7 @@ $t = $text['index'];
   <div class="container">
     <div class="leftbar" id="leftbar">
       <div class="lefbarMenu" id="fileNav">
-        <a nohref onclick="showHideMenu('optionsFile')" id="optionsFileNav"><?php echo $t['File'];?></a>
+        <a nohref onclick="showHideMenu('optionsFile')" id="optionsFileNav" class="filebutton"><?php echo $t['File'];?></a>
       </div>
       
       <div id="githubNav" class="githubNav">
@@ -162,7 +162,6 @@ $t = $text['index'];
           <li><a nohref onClick="showHideMenu('optionsFile');ICEcoder.openPrompt()"><?php echo $t['Open'];?>...</a></li>
           <li><a nohref onClick="showHideMenu('optionsFile');ICEcoder.saveFile()"><?php echo $t['Save'];?></a></li>
           <li><a nohref onclick="showHideMenu('optionsFile');ICEcoder.saveFile('saveAs')"><?php echo $t['Save As'];?>...</a></li>
-          <li><a nohref onclick="showHideMenu('optionsFile');ICEcoder.openPreviewWindow()"><?php echo $t['Live Preview'];?></a></li>
           <li><a nohref onclick="showHideMenu('optionsFile');ICEcoder.downloadFile(top.ICEcoder.selectedFiles[top.ICEcoder.selectedFiles.length-1])"><?php echo $t['Download'];?></a></li>
           <li><a nohref onclick="showHideMenu('optionsFile');ICEcoder.copyFiles(top.ICEcoder.selectedFiles)"><?php echo $t['Copy'];?></a></li>
           <li><a nohref onclick="showHideMenu('optionsFile');ICEcoder.pasteFiles(top.ICEcoder.selectedFiles[top.ICEcoder.selectedFiles.length-1])"><?php echo $t['Paste'];?></a></li>
