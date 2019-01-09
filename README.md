@@ -16,9 +16,9 @@ BLACKICEcoder started out as a port of [ICEcoder](https://icecoder.net/) with th
 * BLACKICEcoder uses [Monaco Editor](https://microsoft.github.io/monaco-editor/) the editor that powers [VS Code](https://code.visualstudio.com/) instead of CodeMirror
 * Adjusted the CSS to be more friendly towards small devices. 
 * Changed a few things so it just works out the box on a standard [Termux](https://termux.com/) installation
-* Works well in Chrome for Android (Couple of CSS issues on high res tablets from Huawei and Samsung)
-* Works great in the Kindle Fire HD range (Alows you to have a full Node / PHP / AngularJS dev invorment for less next to nothing)
-* Disabled the right hand code minimap area to free up space for the editor (Still a few niggles to fix)
+* Works great in Chrome for Android (I re-coded a lot of the actual editor on my Huawei M5 8)
+* Works great in the Kindle Fire HD range (Allows you to have a full Node / PHP / AngularJS / ReactJS dev environment for next to nothing)
+* The righthand mini code navigator is off by default and can be enabled per document. This way it saves resources and prevents speed penalties on large files.
 
 ### Future changes
 
@@ -27,7 +27,9 @@ BLACKICEcoder started out as a port of [ICEcoder](https://icecoder.net/) with th
 
 ### Requirements
 
-You can run ICEcoder either online or locally on any Android phone that can run [Termux](https://termux.com/), on Linux, Windows or Mac based desktops/laptops. The only requirement is to have PHP 5 available (5.3 recommended). You can have this either as a vanilla installation or via a program such as WAMP or XAMPP (for Windows) or MAMP (for Mac).
+You can run BLACKICEcoder either online or locally on any Android phone that can run [Termux](https://termux.com/).
+
+On Linux, Windows or Mac based desktops/laptops. The only requirement is to have PHP 5 available (5.3 recommended). You can have this either as a vanilla installation or via a program such as WAMP or XAMPP (for Windows) or MAMP (for Mac).
 
 ### Installation
 
@@ -86,16 +88,24 @@ $ git clone git@gitlab.com:raynoppe/blackicecoder.git
 
 #### Step 2 (Desktops, Servers): Place in your document root (online or local)
 
-* Put in a new sub-dir URL such as yourdomain.com/ICEcoder or localhost/ICEcoder
+* Put in a new sub-dir URL such as yourdomain.com/blackicecoder or localhost/blackicecoder
 * Set write permissions (757 or 775 depending on your system) on the 'backups', 'lib', 'plugins', 'test' and 'tmp' folders
+* Visit the sub-dir URL in your browser. You will see that no folders and files are loaded in the file browser. This is not an error. Follow next step:
+
+Update your config setting after you have done an initial run.
+lib/config__settings.php
+```
+Change the docRoot value to reflect your home folder
+```
+"docRoot"		=> '/root/to/your/code/folder' 
+```
+Save the file
 
 *(Note: A small number of web servers give an internal server error here, if you get this, try 755 instead)*
 
 #### Step 3: Start coding
 
-* Visit the sub-dir URL in your browser and enter a password
-
-**Now you're setup, auto-logged in and ready to code!**
+**Now you are all setup, auto-logged in and ready to code!**
 
 Suitable for commercial & non-commercial projects, just let me know if it's useful to you and any cool customisations you make to it. I take no responsibility for anything, your usage is all down to you.
 
