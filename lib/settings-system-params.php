@@ -2,9 +2,9 @@
 $newConfigSettingsFile = '<?php
 // ICEcoder system settings
 $ICEcoderSettings = array(
-	"versionNo"		=> "6.0",
+	"versionNo"		=> "1.0",
 	"codeMirrorDir"		=> "CodeMirror",
-	"docRoot"		=> $_SERVER[\'DOCUMENT_ROOT\'],	// Set absolute path of another location if needed
+	"docRoot"		=> "/data/data/com.termux/files/home",	// $_SERVER[\'DOCUMENT_ROOT\'] Set absolute path of another location if needed
 	"demoMode"		=> false,
 	"devMode"		=> false,
 	"fileDirResOutput"	=> "none",			// Can be none, raw, object, both (all but \'none\' output to console)

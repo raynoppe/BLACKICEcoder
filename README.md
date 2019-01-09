@@ -2,16 +2,18 @@
 
 ## Web IDE / browser code editor modified for Termux and smaller screens.
 
-This is a port of [ICEcoder](https://icecoder.net/).
 
-BLACKICEcoder is a web IDE / browser based code editor, which allows you to develop websites on your Andriod Device or locally on any Machine running PHP. It uses CodeMirror for code highlighting & editing, with a slick IDE wrapped around it to make the whole thing work. 
+BLACKICEcoder is a web IDE / browser based code editor, which allows you to develop websites on your Android Device or locally/live on any server running PHP. It uses [Monaco Editor](https://microsoft.github.io/monaco-editor/) (Visual Studio Code) for code editing (includes highlighting, auto complete, code folding), with a mobile friendly IDE wrapped around it to make the whole thing work. 
 
-<img src="https://icecoder.net/images/icecoder-v6-0-browser-code-editor.png" alt="ICEcoder web IDE">
+<img src="https://static1.squarespace.com/static/5a844ad5cf81e008d8b943b8/t/5c35e8f721c67c3150fc0c5b/1547037077315/blackicecoder.jpg" alt="BLACKICEcoder web IDE">
+
+BLACKICEcoder started out as a port of [ICEcoder](https://icecoder.net/) with the CSS adjusted for mobile devices. We have since rebuilt a chunck of it. See the differences below.
 
 ### Differences between BLACKICEcoder and ICEcoder
 
 `Please note: Even though this is modified for Termux it works perfectly fine on any server running PHP`
 
+* BLACKICEcoder uses [Monaco Editor](https://microsoft.github.io/monaco-editor/) the editor that powers [VS Code](https://code.visualstudio.com/) instead of CodeMirror
 * Adjusted the CSS to be more friendly towards small devices. 
 * Changed a few things so it just works out the box on a standard [Termux](https://termux.com/) installation
 * Works well in Chrome for Android (Couple of CSS issues on high res tablets from Huawei and Samsung)
@@ -20,8 +22,8 @@ BLACKICEcoder is a web IDE / browser based code editor, which allows you to deve
 
 ### Future changes
 
-* Rewrite the CSS using flexbox so it is more mobile friendly
-* Replace CodeMirror with [Monaco Editor](https://microsoft.github.io/monaco-editor/)
+* Clean-up the codebase to make it lighter.
+* Add a plugin manager to add functionality like lint and Emet.
 
 ### Requirements
 

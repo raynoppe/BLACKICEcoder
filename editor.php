@@ -228,20 +228,21 @@ switch ($ext) {
 			color: white;
 			padding: 8px;
 			font-size: 12px;
-			border-radius: 5px 5px 0px 0px;
+			border-radius: 5px 5px 5px 5px;
 			text-align: center;
 		}
 		.editorfoot {
 			display: flex;
 			height: 35px;
 			justify-content: left;
+			background-color: #333;
 		}
 		.imgbuttons {
 			padding: 3px 8px;
 			border: 0px solid #fff;
 			margin: 3px;
 			border-radius: 3px;
-			background-color: #666;
+			background-color: #333;
 			margin-right: 8px;
 		}
 	</style>

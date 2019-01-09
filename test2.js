@@ -6,13 +6,13 @@ const newfunction = function() {
 let var1 = 'hello';
 const x = document.getElementById('test');
 
-if(!event.ctrlKey && !top.ICEcoder.cmdKey) { 
-  top.ICEcoder.openCloseDir(this,true); 
+if(!event.ctrlKey && !top.BLACKICEcoder.cmdKey) { 
+  top.BLACKICEcoder.openCloseDir(this,true); 
   if (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)) {
-    top.ICEcoder.openFile()
+    top.BLACKICEcoder.openFile()
   }
 }
 
-this.ICEcoder = function() {
+this.BLACKICEcoder = function() {
  console.log('hello');
 }

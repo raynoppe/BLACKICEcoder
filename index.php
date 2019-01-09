@@ -4,22 +4,6 @@ include("lib/settings.php");
 $t = $text['index'];
 
 $updateMsg = '';
-// Check for updates
-if ($ICEcoder["checkUpdates"]) {
-	$icv_url = "https://icecoder.net/latest-version?thisVersion=".$ICEcoder["versionNo"];
-	$icvData = getData($icv_url,'curl',false,5);
-	if ($icvData == "no data") {
-		$icvData = "1.0\nICEcoder version placeholder";
-	}
-	$icvInfo = explode("\n", $icvData);
-	$icv = $icvInfo[0];
-	$icvI = str_replace('"','\\\'',$icvInfo[1]);
-	$thisV = $ICEcoder["versionNo"];
-	if (strpos($thisV,"beta")>-1 && !strpos($icv,"beta") && str_replace(" beta","",$thisV) == $icv) {$thisV-=0.1;};
-	if ($thisV<$icv) {
-		$updateMsg = ";top.ICEcoder.dataMessage('<b>".$t['UPDATE INFO'].":</b> ICEcoder v ".$icv." ".$t['now available'].". (".$t['Your version is']." v ".$ICEcoder["versionNo"].").<br><br><a onclick=\\'top.ICEcoder.update()\\' style=\\'color:#fff; background: #b00; padding: 5px; text-decoration: none; cursor: pointer\\'>".$t['Update now']."</a><br><br>".$icvI."');";
-	}
-}
 
 $isMac = strpos($_SERVER['HTTP_USER_AGENT'], "Macintosh")>-1 ? true : false;
 ?>
@@ -249,7 +233,7 @@ $t = $text['index'];
     <div class="rightbar">
       
       <div class="rightbarTabs" id="tabsBar" onContextMenu="return false">
-        <a href="javascript: showHide('leftbar');" ><img src="/images/98-document-storage.png" class="tabbarimg" /></a>
+        <div class="tabbarimgdiv"><a href="javascript: showHide('leftbar');" class="tabbarimgdiv" ><img src="/images/98-document-storage.png" class="tabbarimg" /></a></div>
         <div style="display: inline-block;" id="divcontainer"></div>
       </div>
 

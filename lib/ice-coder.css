@@ -75,7 +75,14 @@ h2 {font-size: 18px; font-weight: normal; color: #fff}
 .files .options {
 	transition: opacity 0.15s ease-in-out;
 }
-.leftbar .optionsList { background: #383838; padding: 0px 15px 10px 15px;}
+.leftbar .optionsList { 
+	background: #575656; 
+	padding: 0px 15px 10px 15px;
+	position: absolute; 
+	width: 150px;
+	top: 23px;
+	border-radius: 0px 0px 5px 0px;
+}
 .leftbar .optionsList ul {list-style-type: none; line-height: 24px}
 .leftbar .optionsList a {color: rgb(156, 156, 156); text-decoration: none}
 .leftbar .optionsList a:hover {color: #fff; cursor: pointer}
@@ -90,9 +97,23 @@ h2 {font-size: 18px; font-weight: normal; color: #fff}
 
 .editor {position: absolute; display: inline-block; top: 0; left: 15px; width: 600px}
 .editor .tabsBar {display: inline-block; height: 22px; width: 100%; margin-top: 20px; padding-left: 53px; background: #fff}
-.rightbarTabs .tab { display: inline-block; height: 15px; padding: 5px 8px 2px 9px; border-right: 1px solid #ddd; color: #fff; white-space: nowrap; overflow: hidden; cursor: pointer; z-index: 1;
+.rightbarTabs .tab { 
+	display: inline-block; 
+	height: 29px; 
+	padding-right: 10px; 
+	margin-top: 3px; 
+	border-right: 0px solid #ddd; 
+	color: #fff; 
+	white-space: nowrap; 
+	overflow: hidden; 
+	cursor: pointer; 
+	z-index: 1;
 	transition: width 0.15s ease-in-out;
 	transition: left 0.15s ease-in-out;
+	border-radius: 5px;
+	line-height: 29px;
+	margin-left: 3px;
+	min-width: 100px;
 }
 .rightbarTabs .tabSlide {
 	transition: left 0.15s ease-in-out;
@@ -100,8 +121,12 @@ h2 {font-size: 18px; font-weight: normal; color: #fff}
 .rightbarTabs .tabDrag {
 	transition: left 0s ease-in-out;
 }
-.rightbarTabs .tab .closeTab, .tabsBar .closeAllTabs {margin: 1px 0 0 5px; border-radius: 6px; cursor: pointer}
-.rightbarTabs .tab .closeTab { margin: 0px 3px; float: right; }
+.rightbarTabs .tab .closeTab, .tabsBar .closeAllTabs { margin: 1px 0 0 5px; border-radius: 6px; cursor: pointer }
+.rightbarTabs .tab .closeTab { 
+	margin: 7px 3px 0px 3px;
+	width: 15px;
+	height: 15px;
+}
 .rightbarTabs .alphaTabs { display: inline-block; margin: 6px 8px 0 8px; border-radius: 6px; cursor: pointer}
 .rightbarTabs .alphaTabs:hover {background: #ccc}
 .rightbarTabs .closeAllTabs { display: inline-block; margin: 6px 8px 0 8px; }
