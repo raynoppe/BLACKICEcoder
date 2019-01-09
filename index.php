@@ -157,23 +157,23 @@ $t = $text['index'];
       </div>
       <div id="optionsFile" class="optionsList">
         <ul>
-          <li><a nohref onClick="ICEcoder.newFile()"><?php echo $t['New File'];?>...</a></li>
-          <li><a nohref onClick="ICEcoder.newFolder()"><?php echo $t['New Folder'];?>...</a></li>
-          <li><a nohref onClick="ICEcoder.openPrompt()"><?php echo $t['Open'];?>...</a></li>
-          <li><a nohref onClick="ICEcoder.saveFile()"><?php echo $t['Save'];?></a></li>
-          <li><a nohref onclick="ICEcoder.saveFile('saveAs')"><?php echo $t['Save As'];?>...</a></li>
-          <li><a nohref onclick="ICEcoder.openPreviewWindow()"><?php echo $t['Live Preview'];?></a></li>
-          <li><a nohref onclick="ICEcoder.downloadFile(top.ICEcoder.selectedFiles[top.ICEcoder.selectedFiles.length-1])"><?php echo $t['Download'];?></a></li>
-          <li><a nohref onclick="ICEcoder.copyFiles(top.ICEcoder.selectedFiles)"><?php echo $t['Copy'];?></a></li>
-          <li><a nohref onclick="ICEcoder.pasteFiles(top.ICEcoder.selectedFiles[top.ICEcoder.selectedFiles.length-1])"><?php echo $t['Paste'];?></a></li>
-          <li><a nohref onclick="ICEcoder.deleteFiles(top.ICEcoder.selectedFiles)"><?php echo $t['Delete'];?></a></li>
-          <li><a nohref onclick="ICEcoder.duplicateFiles(top.ICEcoder.selectedFiles)"><?php echo $t['Duplicate'];?></a></li>
-          <li><a nohref onclick="ICEcoder.renameFile(top.ICEcoder.selectedFiles[top.ICEcoder.selectedFiles.length-1])"><?php echo $t['Rename'];?></a></li>
-          <li><a nohref onclick="ICEcoder.uploadFilesSelect(top.ICEcoder.selectedFiles[top.ICEcoder.selectedFiles.length-1])"><?php echo $t['Upload'];?>...</a></li>
-          <li><a nohref onclick="ICEcoder.zipIt(top.ICEcoder.selectedFiles[top.ICEcoder.selectedFiles.length-1])"><?php echo $t['Zip'];?></a></li>
-          <li><a nohref onclick="ICEcoder.propertiesScreen(top.ICEcoder.selectedFiles[top.ICEcoder.selectedFiles.length-1])"><?php echo $t['Properties'];?>...</a></li>
-          <li><a nohref onClick="ICEcoder.printCode()"><?php echo $t['Print'];?>...</a></li>
-          <li><a nohref onClick="ICEcoder.settingsScreen()"><?php echo $t['Settings'];?></a></li>
+          <li><a nohref onClick="showHideMenu('optionsFile');ICEcoder.newFile();"><?php echo $t['New File'];?>...</a></li>
+          <li><a nohref onClick="showHideMenu('optionsFile');ICEcoder.newFolder()"><?php echo $t['New Folder'];?>...</a></li>
+          <li><a nohref onClick="showHideMenu('optionsFile');ICEcoder.openPrompt()"><?php echo $t['Open'];?>...</a></li>
+          <li><a nohref onClick="showHideMenu('optionsFile');ICEcoder.saveFile()"><?php echo $t['Save'];?></a></li>
+          <li><a nohref onclick="showHideMenu('optionsFile');ICEcoder.saveFile('saveAs')"><?php echo $t['Save As'];?>...</a></li>
+          <li><a nohref onclick="showHideMenu('optionsFile');ICEcoder.openPreviewWindow()"><?php echo $t['Live Preview'];?></a></li>
+          <li><a nohref onclick="showHideMenu('optionsFile');ICEcoder.downloadFile(top.ICEcoder.selectedFiles[top.ICEcoder.selectedFiles.length-1])"><?php echo $t['Download'];?></a></li>
+          <li><a nohref onclick="showHideMenu('optionsFile');ICEcoder.copyFiles(top.ICEcoder.selectedFiles)"><?php echo $t['Copy'];?></a></li>
+          <li><a nohref onclick="showHideMenu('optionsFile');ICEcoder.pasteFiles(top.ICEcoder.selectedFiles[top.ICEcoder.selectedFiles.length-1])"><?php echo $t['Paste'];?></a></li>
+          <li><a nohref onclick="showHideMenu('optionsFile');ICEcoder.deleteFiles(top.ICEcoder.selectedFiles)"><?php echo $t['Delete'];?></a></li>
+          <li><a nohref onclick="showHideMenu('optionsFile');ICEcoder.duplicateFiles(top.ICEcoder.selectedFiles)"><?php echo $t['Duplicate'];?></a></li>
+          <li><a nohref onclick="showHideMenu('optionsFile');ICEcoder.renameFile(top.ICEcoder.selectedFiles[top.ICEcoder.selectedFiles.length-1])"><?php echo $t['Rename'];?></a></li>
+          <li><a nohref onclick="showHideMenu('optionsFile');ICEcoder.uploadFilesSelect(top.ICEcoder.selectedFiles[top.ICEcoder.selectedFiles.length-1])"><?php echo $t['Upload'];?>...</a></li>
+          <li><a nohref onclick="showHideMenu('optionsFile');ICEcoder.zipIt(top.ICEcoder.selectedFiles[top.ICEcoder.selectedFiles.length-1])"><?php echo $t['Zip'];?></a></li>
+          <li><a nohref onclick="showHideMenu('optionsFile');ICEcoder.propertiesScreen(top.ICEcoder.selectedFiles[top.ICEcoder.selectedFiles.length-1])"><?php echo $t['Properties'];?>...</a></li>
+          <li><a nohref onClick="showHideMenu('optionsFile');ICEcoder.printCode()"><?php echo $t['Print'];?>...</a></li>
+          <li><a nohref onClick="showHideMenu('optionsFile');ICEcoder.settingsScreen()"><?php echo $t['Settings'];?></a></li>
         </ul>
       </div>
       <div id="optionsHelp" class="optionsList">

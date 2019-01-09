@@ -5,7 +5,7 @@ $t = $text['editor'];
 $getfile = $_REQUEST['getfile'];
 $isNew = $_REQUEST['isNew'];
 $ext = strtolower(pathinfo($getfile, PATHINFO_EXTENSION));
-$fileToOpen = $_SERVER["DOCUMENT_ROOT"].$getfile;
+$fileToOpen = $docRoot.$getfile;
 if($isNew == 'false') {
 	$loadedFile = getData($fileToOpen);
 } else {

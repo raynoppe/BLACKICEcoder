@@ -1,5 +1,5 @@
 <?php 
-include("lib/settings.php");
+include("settings.php");
 $file = $_REQUEST['file'];
 $contents = $_REQUEST['contents'];
 $action = $_REQUEST['action'];
@@ -15,9 +15,8 @@ if($action == 'save'){
 
 if($action == 'create') {
   $filetowrite = $docRoot.$file;
-  echo $filetowrite;
   if (file_exists($filetowrite)) {
-    echo '{ "status": "exists", "file", "'.$filetowrite.'" }';
+    echo '{ "status": "exists" }';
   } else {
     $newfile = fopen($filetowrite, "w");
     $contents = "// create something amazing";
