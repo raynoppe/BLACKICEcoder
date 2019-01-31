@@ -81,7 +81,7 @@ Run php in the blackicecoder folder:
 ```
 php -S 127.0.0.1:1028 -t ~/BLACKICEcoder/
 ```
-## Useing BLACKICE
+## Using BLACKICE
 #### Selecting text
 Tap next to the work you want to copy and then press and hold the SHIFT key and use the arrow buttons
 
