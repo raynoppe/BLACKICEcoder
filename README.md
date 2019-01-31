@@ -23,11 +23,12 @@ BLACKICEcoder started out as a port of [ICEcoder](https://icecoder.net/) with th
 ### Future changes
 
 * Clean-up the codebase to make it lighter.
+* Change the backend from PHP to Node.js (Thoughts?)
 * Add a plugin manager to add functionality like lint and Emet.
 
 ### Requirements
 
-You can run BLACKICEcoder either online or locally on any Android phone that can run [Termux](https://termux.com/).
+You can run BLACKICEcoder either online or locally on any Android phone that can run [Termux](https://termux.com/). I strongly recommend installing Hacker's Keyboard or another keyboard that has Ctrl, Shift and Arrow button else you will not be able to select text.
 
 On Linux, Windows or Mac based desktops/laptops. The only requirement is to have PHP 5 available (5.3 recommended). You can have this either as a vanilla installation or via a program such as WAMP or XAMPP (for Windows) or MAMP (for Mac).
 
@@ -54,36 +55,43 @@ Enter your install folder:
 ```
 $ cd blackicecoder
 ```
-Set write permissions on the 'backups', 'lib', 'plugins', 'test' and 'tmp' folders.
+Set write permissions on the 'backups', 'lib', 'plugins', 'test' and 'tmp' folders. (Try without doing this first as it doesn't seem to be needed on Termux)
 Example: 
 ```
 $ chmod 775 backups/
 ```
 Double check your Termux document root
+If your home folder differs in BLACKICE for some strange reason to '/data/data/com.termux/files/home' you need to update the following file 'lib/config__settings.php' using vim or your favourite editor
 ```
-$ cd ~
-$ pwd
-```
-If it differs for some strange reason to '/data/data/com.termux/files/home' you need to update the following file 'lib/config__settings.php' using vim or your favourite editor
-```
-$ cd blackicecoder
+$ cd BLACKICEcoder
 $ vim lib/config__settings.php
 ```
 Change the docRoot value to reflect your Termux home folder 
 ```
 "docRoot"		=> '/data/data/com.termux/files/home' 
 ```
+If you want to use BLACKICE to edit your config files as well change the docRoot to 
+```
+"docRoot"		=> '/data/data/com.termux/files' 
+```
 Save the file
 
 #### Step 3 (Termux):
 Run php in the blackicecoder folder: 
 ```
-php -S 0.0.0.0:1028 -t ~/blackicecoder/
+php -S 127.0.0.1:1028 -t ~/BLACKICEcoder/
 ```
+## Useing BLACKICE
+#### Selecting text
+Tap next to the work you want to copy and then press and hold the SHIFT key and use the arrow buttons
+
+#### Code completion
+To complete a TAG in HTML and PHP type the first part of the tag and the use Ctrl + Left Arrow to complete.
+'&gtdiv' Ctrl → &gtdiv&lt&gt/div&lt
 
 #### Step 1 (Desktops, Servers): Get BLACKICEcoder
 ```
-$ git clone git@gitlab.com:raynoppe/blackicecoder.git
+$ git clone https://github.com/raynoppe/BLACKICEcoder.git 
 ```
 
 #### Step 2 (Desktops, Servers): Place in your document root (online or local)
