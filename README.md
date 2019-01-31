@@ -86,8 +86,8 @@ php -S 127.0.0.1:1028 -t ~/BLACKICEcoder/
 Tap next to the work you want to copy and then press and hold the SHIFT key and use the arrow buttons
 
 #### Code completion
-To complete a TAG in HTML and PHP type the first part of the tag and the use Ctrl + Left Arrow to complete.
-'&gtdiv' Ctrl → &gtdiv&lt&gt/div&lt
+To complete a TAG in HTML and PHP type the first part of the tag and the use Ctrl + Left Arrow to complete.<br/>
+'&gt;div' Ctrl → &gt;div&lt;&gt;/div&lt;
 
 #### Step 1 (Desktops, Servers): Get BLACKICEcoder
 ```
