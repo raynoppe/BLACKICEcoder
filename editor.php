@@ -366,6 +366,18 @@ switch ($ext) {
 									case 'hr':
 										preStr += ` href="${flagval}"`;
 										break;
+									case 'src':
+										preStr += ` src="${flagval}"`;
+										break;
+									case 'js':
+										preStr += ` language="javascript" type="text/javascript"`;
+										if ( flagval !== '' ) {
+											preStr += ` src="${flagval}"`;
+										}
+										break;
+									case 'css':
+										preStr += ` rel="stylesheet" type="text/css" media="screen" href="${flagval}"`;
+										break;
 								
 									default:
 										preStr += ` ${flag}="${flagval}"`;
@@ -375,21 +387,50 @@ switch ($ext) {
 								
 							}
 						}
+						var startPos = atpos.endLineNumber;
 						var id = { major: 1, minor: 1 }; 
+						var mvc = true;
+						var changeLine = -1;
+						var changeCol = -1;
+						var tgl = 0;
 						switch (tag) {
 							case 'img':
+								mvc = false;
 								var text = `${preStr}/>`;
+								break;
+							case '?php':
+								tgl = 3;
+								var text = `${preStr}  ?>`;
 								break;
 							case 'br':
+								mvc = false;
 								var text = `${preStr}/>`;
 								break;
+							case 'htmlstart':
+								endPos -= 9;
+								changeLine = 8;
+								changeCol = 4;
+								var text = '<!DOCTYPE html>\n<html>\n<head>\n\t<meta charset="utf-8" />\n\t<title>Page Title</title>\n</head>\n<body>\n\t\n</body>\n</html>\n';
+								break;
 							default:
+								tgl = tag.length + 3;
 								var text = `${preStr}></${tag}>`;
 								break;
 						}        
-						var range = new monaco.Range(atpos.endLineNumber, endPos, atpos.endLineNumber, atpos.endColumn);
+						var range = new monaco.Range(startPos, endPos, startPos, atpos.endColumn);
 						var op = {identifier: id, range: range, text: text, forceMoveMarkers: true};
 						editor.executeEdits("my-source", [op]);
+						// move cursor
+						if ( mvc ) {
+							var newpos = ed.getSelection();
+							console.log('newpos', newpos);
+							console.log('tgl', tgl);
+							var newLine = newpos.endLineNumber;
+							if ( changeLine !== -1 ) { newLine = changeLine; }
+							var newCPos = newpos.endColumn - tgl;
+							if ( changeCol !== -1 ) { newCPos = changeCol; }
+							ed.setPosition({ lineNumber: newLine, column: newCPos });
+						}
 					}
 				}
 				
