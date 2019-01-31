@@ -268,6 +268,7 @@ switch ($ext) {
 	require.config({ paths: { 'vs': '/monaco/min/vs' }});
 
 	require(['vs/editor/editor.main'], function() {
+		// monaco.languages.registerCompletionItemProvider('<?php echo $uselang; ?>', {});
 		editor = monaco.editor.create(document.getElementById('container'), {
 			theme: 'vs-dark',
       		value: texttoedit,
@@ -275,6 +276,128 @@ switch ($ext) {
 			minimap: {
             enabled: false
         }
+		});
+
+		editor.addAction({
+			// An unique identifier of the contributed action.
+			id: 'my-unique-id',
+
+			// A label of the action that will be presented to the user.
+			label: 'My Label!!!',
+
+			// An optional array of keybindings for the action.
+			keybindings: [
+				monaco.KeyMod.CtrlCmd | monaco.KeyCode.RightArrow
+			],
+
+			// A precondition for this action.
+			precondition: null,
+
+			// A rule to evaluate on top of the precondition in order to dispatch the keybindings.
+			keybindingContext: null,
+
+			contextMenuGroupId: 'navigation',
+
+			contextMenuOrder: 1.5,
+
+			// Method that will be executed when the action is triggered.
+			// @param editor The editor instance is passed in as a convinience
+			run: function(ed) {
+				// const atpos = ed.getPosition();
+				const atpos = ed.getSelection();
+				console.log(atpos, atpos.endLineNumber, atpos.endColumn);
+				var model = editor.getModel();
+				var partOfTheText = model.getValueInRange({
+					startLineNumber: atpos.endLineNumber,
+					startColumn: 1,
+
+					endLineNumber: atpos.endLineNumber,
+					endColumn: atpos.endColumn,
+				});
+				var uselang = '<?php echo $uselang; ?>';
+				var preStr = '';
+				if (uselang === 'html' || uselang === 'php') {
+					var getlast = partOfTheText.lastIndexOf('<');
+					if(getlast !== -1) {
+						var tag = partOfTheText.substring(getlast + 1, atpos.endColumn);
+						var checkSpace = tag.indexOf(' ');
+						if ( checkSpace !== -1 ) {
+							tag = tag.substring(0, checkSpace);
+						}
+						var endPos = atpos.endColumn;
+						var checkflag = tag.indexOf('-');
+						if ( checkflag !== -1) {
+							var chunk1 = tag.split('-');
+							var flagsraw = chunk1[1];
+							var flaglength = flagsraw.length + 1;
+							endPos -= flaglength;
+							console.log('flags', flagsraw, flaglength);
+							tag = tag.substring(0, checkflag);
+							var flags = flagsraw.split(',');
+							for ( var flagin of flags ) {
+								console.log( 'flagin', flagin );
+								var flagval = '';
+								var checkcond = flagin.indexOf(':');
+								if ( checkcond !== -1 ) {
+									var flagsplit = flagin.split(':');
+									flag = flagsplit[0];
+									flagval = flagsplit[1];
+								} else {
+									flag = flagin;
+								}
+								switch (flag) {
+									case 'i':
+										preStr += ` id="${flagval}"`;
+										break;
+									case 'c':
+										preStr += ` class="${flagval}"`;
+										break;
+									case 's':
+										preStr += ` style="${flagval}"`;
+										break;
+									case 'h':
+										preStr += ` height="${flagval}"`;
+										break;
+									case 'w':
+										preStr += ` width="${flagval}"`;
+										break;
+									case 'hr':
+										preStr += ` href="${flagval}"`;
+										break;
+								
+									default:
+										preStr += ` ${flag}="${flagval}"`;
+										break;
+								}
+								
+								
+							}
+						}
+						var id = { major: 1, minor: 1 }; 
+						switch (tag) {
+							case 'img':
+								var text = `${preStr}/>`;
+								break;
+							case 'br':
+								var text = `${preStr}/>`;
+								break;
+							default:
+								var text = `${preStr}></${tag}>`;
+								break;
+						}        
+						var range = new monaco.Range(atpos.endLineNumber, endPos, atpos.endLineNumber, atpos.endColumn);
+						var op = {identifier: id, range: range, text: text, forceMoveMarkers: true};
+						editor.executeEdits("my-source", [op]);
+					}
+				}
+				
+				
+				
+				
+				// alert("i'm running => " + atpos);
+
+				return null;
+			}
 		});
 
 		window.onresize = function() {
@@ -370,5 +493,6 @@ switch ($ext) {
 	}
 
 </script>
+
 </body>
 </html>
