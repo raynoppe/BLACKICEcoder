@@ -251,9 +251,10 @@ switch ($ext) {
 
 <div class="editorcontainer">
 	<div class="editorfoot">
-		<a href="javascript:savefile()" class="imgbuttons"><img src="/images/425-floppy.png" width="20" height="20" /></a>
-		<a href="javascript:showfind()" class="imgbuttons"><img src="/images/404-magnifying-glass.png" width="20" height="20" /></a>
-		<a href="javascript:showHideCN()" class="imgbuttons"><img src="/images/259-paper-map.png" width="20" height="20" /></a>
+		<a id="ssave" href="javascript:savefile()" class="imgbuttons"><img src="/images/425-floppy.png" width="20" height="20" /></a>
+		<a id="sfind" href="javascript:showfind()" class="imgbuttons"><img src="/images/404-magnifying-glass.png" width="20" height="20" /></a>
+		<a id="scont" href="javascript:showContext()" class="imgbuttons"><img src="/images/list_nested_16x14.png" width="20" height="20" /></a>
+		<a id="minmap" href="javascript:showHideCN()" class="imgbuttons"><img src="/images/259-paper-map.png" width="20" height="20" /></a>
 	</div>
 	<div class="monacocontainer" id="container"></div>
 	<div class="editoralert" id="editoralert">-- loading --</div>
@@ -273,9 +274,10 @@ switch ($ext) {
 			theme: 'vs-dark',
       		value: texttoedit,
 			language: '<?php echo $uselang; ?>',
+			contextmenu: false,
 			minimap: {
-            enabled: false
-        }
+            	enabled: false
+        	}
 		});
 
 		editor.addAction({
@@ -283,7 +285,7 @@ switch ($ext) {
 			id: 'my-unique-id',
 
 			// A label of the action that will be presented to the user.
-			label: 'My Label!!!',
+			label: 'Code complete',
 
 			// An optional array of keybindings for the action.
 			keybindings: [
@@ -408,27 +410,42 @@ switch ($ext) {
 	});
 
 	var showHideCN = function() {
-		console.log('showCodeNav', showCodeNav);
-		
 		if (showCodeNav) {
-			editor.updateOptions({
-        minimap: {
-            enabled: false
-        }
-			});
+			editor.updateOptions({ minimap: { enabled: false } });
 			showCodeNav = false;
+			document.getElementById('minmap').style.backgroundColor = '#333';
 		} else {
-			editor.updateOptions({
-        minimap: {
-            enabled: true
-        }
-			});
+			editor.updateOptions({ minimap: { enabled: true } });
 			showCodeNav = true;
+			document.getElementById('minmap').style.backgroundColor = 'red';
 		}
 	}
 
+	var context = false;
+
+	var showContext = function () {
+		if ( context === true ) {
+			editor.updateOptions({ contextmenu: false });
+			context = false;
+			document.getElementById('scont').style.backgroundColor = '#333';
+		} else {
+			editor.updateOptions({ contextmenu: true });
+			context = true;
+			document.getElementById('scont').style.backgroundColor = 'red';
+		}
+		
+	}
+	var findshow = false;
 	var showfind = function() {
-		editor.getAction("actions.find").run();
+		if(findshow) {
+			editor.getContribution('editor.contrib.findController').closeFindWidget();
+			findshow = false;
+			document.getElementById('sfind').style.backgroundColor = '#333';
+		} else {
+			editor.getAction("actions.find").run();
+			findshow = true;
+			document.getElementById('sfind').style.backgroundColor = 'red';
+		}
 	}
 
 	// XHR object
