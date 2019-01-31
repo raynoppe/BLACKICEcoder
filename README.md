@@ -93,6 +93,7 @@ $ git clone git@gitlab.com:raynoppe/blackicecoder.git
 * Visit the sub-dir URL in your browser. You will see that no folders and files are loaded in the file browser. This is not an error. Follow next step:
 
 Update your config setting after you have done an initial run.
+```
 lib/config__settings.php
 ```
 Change the docRoot value to reflect your home folder
@@ -110,7 +111,5 @@ Save the file
 Suitable for commercial & non-commercial projects, just let me know if it's useful to you and any cool customisations you make to it. I take no responsibility for anything, your usage is all down to you.
 
 It's fully open source and MIT licensed. I'm happy for you to take it, make it your own and customise to your hearts content and/or contribute to this main repo! :)
-
-Plenty of comments included in the code to assist with understanding, customising etc.
 
 Comments, improvements & feedback welcomed!
