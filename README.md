@@ -87,7 +87,10 @@ Tap next to the work you want to copy and then press and hold the SHIFT key and 
 
 #### Code completion
 To complete a TAG in HTML and PHP type the first part of the tag and the use Ctrl + Left Arrow to complete.<br/>
-'&gt;div' Ctrl → &gt;div&lt;&gt;/div&lt;
+&lt;div Ctrl → &lt;div&gt;&lt;/div&gt;<br/>
+&lt;div-i Ctrl → &lt;div id=""&gt;&lt;/div&gt;<br/>
+&lt;div-i:myid Ctrl → &lt;div id="myid"&gt;&lt;/div&gt;<br/>
+&lt;div-i:myid,c:myclass Ctrl → &lt;div id="myid" class="myclass"&gt;&lt;/div&gt;<br/>
 
 #### Step 1 (Desktops, Servers): Get BLACKICEcoder
 ```
