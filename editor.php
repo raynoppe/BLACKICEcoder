@@ -280,6 +280,10 @@ switch ($ext) {
         	}
 		});
 
+		editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KEY_S, function() {
+			savefile();
+		});
+
 		editor.addAction({
 			// An unique identifier of the contributed action.
 			id: 'my-unique-id',
